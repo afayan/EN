@@ -225,16 +225,16 @@ function Dashboard() {
               <div className="course-image">
                 <img src={course.image} alt={course.cname} />
                 <div className="progress-bar">
-                  {/* <div 
+                  <div 
                     className="progress-fill" 
-                    style={{ width: `${course.completionRate}%` }}>
-                  </div> */}
+                    style={{ width: `${course.completion.completionPercentage}%` }}>
+                  </div>
                 </div>
               </div>
               <div className="course-info">
-                <h3>{course.title}</h3>
+                <h3>{course.cname}</h3>
                 <p className="instructor">Instructor: {course.faculty}</p>
-                <p className="completion">Completion: {course.completionRate}%</p>
+                <p className="completion">Completion: {course.completion.completionPercentage}%</p>
                 <button className="continue-btn">Continue Learning</button>
               </div>
             </div>

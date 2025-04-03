@@ -180,15 +180,49 @@ app.post("/api/showmycourses", async (req, res) => {
   }
 
   try {
+    // First, get completion data for all enrolled courses
+    const completionData = await getUserCourseCompletionStatus(userid);
+    
+    // Create a map of course IDs to completion info for quick lookup
+    const completionMap = new Map(
+      completionData.map(data => [data.courseId, {
+        completionPercentage: data.completionPercentage,
+        completedVideos: data.completedVideos,
+        totalVideos: data.totalVideos
+      }])
+    );
+
+    // Get enrolled courses and all courses
     const enrolledCourses = await enrolledmodel.find({ userid });
     const allCourses = await coursemodel.find();
     const courseMap = new Map(allCourses.map((c) => [c._id.toString(), c]));
 
-    const result = enrolledCourses.map((e) => courseMap.get(e.courseid)).filter((course) => course);
+    // Map enrolled courses to course objects and add completion status
+    const result = enrolledCourses.map(e => {
+      const courseId = e.courseid;
+      const course = courseMap.get(courseId);
+      
+      if (!course) return null;
+      
+      // Add completion data to course object
+      return {
+        ...course.toObject(),
+        completion: completionMap.get(courseId) || {
+          completionPercentage: 0,
+          completedVideos: 0,
+          totalVideos: 0
+        }
+      };
+    }).filter(course => course); // Remove any null values
 
-    res.json({ status: true, message: "Enrolled courses retrieved", courses: result });
+    res.json({ 
+      status: true, 
+      message: "Enrolled courses retrieved with completion status", 
+      courses: result 
+    });
   } catch (error) {
-    res.json({ status: false, message: "Error fetching courses", error });
+    console.error("Error fetching courses with completion status:", error);
+    res.json({ status: false, message: "Error fetching courses", error: error.message });
   }
 });
 
@@ -390,9 +424,24 @@ app.post('/api/getdashboardinfo', async (req, res) => {
 
       // Get course details for the liked videos
       const interestedCourses = await coursemodel.find({ _id: { $in: courseIds } });
+      console.log('user', user, req.body);
+      
 
+      // console.log(interestedCourses)
+      //user: {
+      //   _id: '67c9ac596ed570d3467b3219',
+      //   username: 'd',
+      //   email: 'd',
+      //   password: '$2b$10$P5P69GASW43pzfpergxcdudh7HnlXaBRJy8KeG9g2N3EVHqqULzuW',
+      //   __v: 0,
+      //   admin: false
+      // }
 
-      console.log(interestedCourses);
+      //first get my courses
+      //then see how much of it is completed
+      //in actions, c means completed
+      //videoid in videos
+      //log the completion percentage
       
 
       res.json({
@@ -547,4 +596,73 @@ function checkAdmin(req, res, next) {
   
   
 
+}
+
+
+async function getUserCourseCompletionStatus(userId) {
+  try {
+    // Get all courses the user is enrolled in
+    const enrolledCourses = await enrolledmodel.find({ userid: userId });
+    
+    if (!enrolledCourses.length) {
+      console.log('User is not enrolled in any courses');
+      return [];
+    }
+    
+    // Array to store completion data
+    let completionData = [];
+    
+    // Process each enrolled course
+    for (const enrollment of enrolledCourses) {
+      // Get course details
+      const course = await coursemodel.findById(enrollment.courseid);
+      
+      if (!course) {
+        console.log(`Course with ID ${enrollment.courseid} not found`);
+        continue;
+      }
+      
+      // Get all videos for this course
+      const courseVideos = await videomodel.find({ courseid: enrollment.courseid });
+      const totalVideos = courseVideos.length;
+      
+      if (totalVideos === 0) {
+        completionData.push({
+          courseId: enrollment.courseid,
+          courseName: course.cname,
+          completionPercentage: 0,
+          completedVideos: 0,
+          totalVideos: 0
+        });
+        continue;
+      }
+      
+      // Get completed video actions for this user and course
+      const completedVideoActions = await actionmodel.find({
+        user: userId,
+        action: 'c',
+        video: { $in: courseVideos.map(video => video._id.toString()) }
+      });
+      
+      // Count unique completed videos (in case there are duplicate actions)
+      const uniqueCompletedVideos = new Set(completedVideoActions.map(action => action.video)).size;
+      
+      // Calculate completion percentage
+      const completionPercentage = (uniqueCompletedVideos / totalVideos) * 100;
+      
+      // Add to completion data
+      completionData.push({
+        courseId: enrollment.courseid.toString(),
+        courseName: course.cname,
+        completionPercentage: Math.round(completionPercentage),
+        completedVideos: uniqueCompletedVideos,
+        totalVideos
+      });
+    }
+    
+    return completionData;
+  } catch (error) {
+    console.error('Error getting user course completion status:', error);
+    throw error;
+  }
 }
