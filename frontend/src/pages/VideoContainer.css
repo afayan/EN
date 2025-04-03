@@ -1,0 +1,81 @@
+.videocontainer{
+    width: 70vw;
+    margin: 20px;
+}
+
+.videocontainer video{
+    width: 100%;
+}
+
+.videopage{
+ display: flex;
+}
+
+.desc{
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 20px;
+    background-color: gray;
+    color: black;
+    margin: 10px;
+    border-radius: 10px;
+    width: 70vw;
+    
+}
+
+.leftside{
+ display: flex;
+ flex-direction: column;
+ background-color: rgb(96, 95, 95);
+}
+
+.leftside h1{
+    background-color: white;
+}
+
+.playlistdiv{
+    background-color: rgb(255, 255, 255);
+    flex: 1;
+}
+
+.playlistelement{
+    padding: 20px;
+    background-color: rgb(99, 99, 99);
+    color: white;
+    margin: 10px;
+    border-radius: 10px;
+}
+
+.selected{
+    background-image: var(--grad);
+    color: black;
+}
+
+.commentsdiv{
+    padding: 10px;
+}
+
+.commentsdiv input{
+    padding: 10px;
+    margin: 10px;
+    width: 90%;
+}
+
+.commentsdiv button{
+    border: none;
+    margin-left: 20px;
+    background-image: var(--grad)
+    ;
+}
+
+.comment{
+    background-color: rgb(208, 208, 208);
+    color: black;
+    padding: 16px;
+    width: max-content;
+    border-radius: 10px;
+    margin: 10px;
+}
+
+.comment p{
+    opacity: 0.5;
+}

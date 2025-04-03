@@ -1,0 +1,112 @@
+:root{
+  --grad : linear-gradient(to right, rgb(108, 255, 231) , rgb(255, 248, 123));
+}
+
+#amdinlink{
+  border: none;
+
+  background-color: rgb(176, 178, 179);
+}
+
+.loginform{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.loginform input{
+  background-color: rgb(226, 226, 226);
+  border: none;
+}
+
+button{
+  cursor: pointer;
+}
+
+.loginmessage{
+  padding: 10px;
+  border-radius: 7px;
+  animation: popmessage 0.2s ease-out 0s 1 forwards;
+}
+
+@keyframes popmessage {
+  0%{
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  100%{
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+#success{
+  background-color: lightgreen;
+}
+
+#error{
+  background-color: rgb(255, 92, 92);
+  color: white;
+}
+
+.select{
+  width: 200px;
+  cursor: pointer;
+}
+
+.select button{
+  width: 50%;
+  padding: 10px;
+  background-color: transparent;
+  border: none;
+}
+
+.scrollparent{
+  height: 10px;
+  background-color: white;
+}
+
+.scrollparent div{
+  width: 50%;
+  height: inherit;
+  background-image: var(--grad);
+  border-radius: 10px;
+}
+
+.largeparent{
+  display: flex;
+  margin: 30px;
+  height: 90vh;
+}
+
+.largeparent img{
+  width: 50%;
+  flex: 1;
+  height: 90vh;
+}
+
+.loginformlarge{
+  background-color: rgb(255, 255, 255);
+  flex: 1;
+  padding: 50px;
+}
+
+.largeparent input, button{
+  padding: 10px;
+}
+
+#logbutton{
+  background-image: var(--grad);
+  border: none;
+}
+
+@media screen and (max-width : 800px) {
+  .hideonmobile{
+    display: none;
+  }
+
+  .select{
+    width: 100%;
+  }
+}

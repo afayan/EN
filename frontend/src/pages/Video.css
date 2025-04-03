@@ -1,0 +1,37 @@
+body{
+    background-color: white;
+}
+
+.uploadvideoform{
+    display: flex;
+    flex-direction: column;
+    background-color: grey;
+    padding: 10px;
+    gap: 10px;
+}
+
+.messagebox{
+    background-color: red;
+    color: white;
+    padding: 10px;
+    width: max-content;
+}
+
+.head1{
+    padding: 20px;
+}
+
+.videoflex{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 10px;
+}
+
+.videoflex div{
+    /* background-color: grey; */
+    color: rgb(60, 60, 60);
+    padding: 10px;
+    border-radius: 10px;
+    background-image: var(--grad);
+}
