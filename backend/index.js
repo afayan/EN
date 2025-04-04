@@ -51,6 +51,15 @@ mongoose.connect(process.env.MONGO_URL, {
   const upload = multer({ storage });
 
 
+  const storage2 = new CloudinaryStorage({
+    cloudinary: cloudinary,
+    params: {
+      folder: 'course_thumbnails', // Cloudinary folder name
+      allowed_formats: ['jpg', 'png', 'jpeg', 'webp']
+    },
+  });
+
+  const upload2 = multer({storage : storage2})
 
 //  Added GET route to fetch user by email
 app.get("/api/get-user", async (req, res) => {
@@ -124,23 +133,32 @@ app.post("/api/login", async (req, res) => {
 });
 
 //  Add a new course
-app.post("/api/addcourse", async (req, res) => {
-  const { cname, category, faculty , description} = req.body;
+app.post('/api/addcourse', upload2.single('thumbnail'), async (req, res) => {
+  const { cname, category, faculty, description } = req.body;
 
-  if (!cname || !category || !faculty || !description) {
-    return res.json({ status: false, message: "All fields are required" });
+  if (!cname || !category || !faculty || !description || !req.file) {
+    return res.json({ status: false, message: "All fields and image are required" });
   }
 
   try {
-    const newCourse = new coursemodel({ cname, category, faculty, description });
+    const imageUrl = req.file.path; // Cloudinary URL
+    console.log(imageUrl);
+    
+
+    const newCourse = new coursemodel({
+      cname,
+      category,
+      faculty,
+      description,
+      image: imageUrl, // Save Cloudinary image URL
+    });
+
     await newCourse.save();
     res.json({ status: true, message: "Course created", details: newCourse });
   } catch (error) {
-
     if (error.code === 11000) {
-      return res.json({ status: false, message: "Course already exists", error });  
+      return res.json({ status: false, message: "Course already exists", error });
     }
-
     res.json({ status: false, message: "Error creating course", error });
   }
 });
@@ -314,9 +332,7 @@ app.post('/api/fun', (req, res)=>{
 app.post("/api/upload", upload.single("video"), async (req, res) => {
   try {
     const videoUrl = req.file.path; // Cloudinary video URL
-
     const {title, courseid, description} = req.body
-
     console.log("video uploaded");
     
     if (!videoUrl) {

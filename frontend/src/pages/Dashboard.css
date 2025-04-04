@@ -148,7 +148,7 @@ section h2 {
 
 .course-image {
   position: relative;
-  height: 60px;
+  height: 160px;
   overflow: hidden;
 
 }
@@ -157,7 +157,6 @@ section h2 {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  display: none;
 }
 
 .progress-bar {

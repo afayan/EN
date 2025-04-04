@@ -223,7 +223,7 @@ function Dashboard() {
           {mycourses.map(course => (
             <div onClick={()=>navigate('/course/'+ course._id)} key={course._id} className="course-card">
               <div className="course-image">
-                <img src={course.image} alt={course.cname} />
+                <img src={course?.image} alt={course.cname} />
                 <div className="progress-bar">
                   <div 
                     className="progress-fill" 
@@ -248,8 +248,8 @@ function Dashboard() {
           {morecourses.map(course => (
             <div key={course._id} className="course-card">
               <div className="course-image">
-                <img src={course.image} alt={course.cname} />
-                <div className="rating">★ {course.rating}</div>
+              <img src={course?.image} alt={course.cname} />
+              <div className="rating">★ {course.rating}</div>
               </div>
               <div className="course-info">
                 <h3>{course.cname}</h3>

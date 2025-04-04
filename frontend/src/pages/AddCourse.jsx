@@ -1,72 +1,71 @@
-import React, { useRef } from 'react'
-import './AddCourse.css'
-import useLogin from '../hooks/useLogin'
-import { useNavigate } from 'react-router-dom'
+import React, { useRef, useState } from 'react';
+import './AddCourse.css';
+import useLogin from '../hooks/useLogin';
+import { useNavigate } from 'react-router-dom';
 
 function AddCourse() {
-
-    const cnameref = useRef(0)
-    const facref = useRef(0)
-    const subjectref = useRef(0)
-    const descref = useRef(0)
-    const [checking, userid, islogged, admin] = useLogin()
-    const navigate = useNavigate()
-
+    const cnameref = useRef(null);
+    const facref = useRef(null);
+    const subjectref = useRef(null);
+    const descref = useRef(null);
+    const [thumbnail, setThumbnail] = useState(null);
+    const [checking, userid, islogged, admin] = useLogin();
+    const navigate = useNavigate();
 
     if (!checking && !admin) {
-        navigate('/')
+        navigate('/');
     }
 
+    // Handle file selection
+    const handleFileChange = (event) => {
+        setThumbnail(event.target.files[0]); // Store the selected file
+    };
 
     async function addCourse() {
+        const formData = new FormData();
+        formData.append('cname', cnameref.current.value);
+        formData.append('category', subjectref.current.value);
+        formData.append('faculty', facref.current.value);
+        formData.append('description', descref.current.value);
+        if (thumbnail) {
+            formData.append('thumbnail', thumbnail); // Append image file
+        }
 
-        console.log(subjectref.current.value, descref.current.value);
-        
+        try {
+            const response = await fetch('/api/addcourse', {
+                method: 'POST',
+                body: formData, // Send as multipart/form-data
+            });
 
-        const response = await fetch('/api/addcourse', {
-            method : 'post',
-            headers : {
-                'Content-type' : 'application/json'
-            },
-            body : JSON.stringify({
-                cname : cnameref.current.value,
-                category : subjectref.current.value,
-                faculty : facref.current.value,
-                description : descref.current.value
-            })
-        })
-        const data = await response.json()
-
-        console.log(data);
-        
+            const data = await response.json();
+            console.log(data);
+        } catch (error) {
+            console.error('Error adding course:', error);
+        }
     }
 
-
-
-  return (
-    <>
-
-    <div className="inputform">
-        <h1>Create course</h1>
-        <input ref={cnameref} type="text" placeholder='Course name'/>
-        <input ref={facref} type="text" placeholder='Faculty name'/>
-        <select ref={subjectref} name="" id="" >
-            <option value="">Select course subject</option>
-            <option value="technology">Technology & IT</option>
-            <option value="business">Business & Management</option>
-            <option value="science">Science & Engineering</option>
-            <option value="arts">Arts & Humanities</option>
-            <option value="design">Design & Creativity</option>
-            <option value="health">Health & Medicine</option>
-            <option value="finance">Finance & Accounting</option>
-            <option value="personal_dev">Personal Development</option>
-        </select>
-        <textarea ref={descref} name="" id="" rows={5}></textarea>
-        <button onClick={()=>addCourse()}>submit</button>
-    </div>
-
-    </>
-  )
+    return (
+        <div className="inputform">
+            <h1>Create Course</h1>
+            <input ref={cnameref} type="text" placeholder="Course Name" />
+            <input ref={facref} type="text" placeholder="Faculty Name" />
+            <input type="file" accept="image/*" onChange={handleFileChange} />
+            {thumbnail && <img src={URL.createObjectURL(thumbnail)} alt="Thumbnail Preview" width="100" />}
+            <select ref={subjectref}>
+                <option value="">Select Course Subject</option>
+                <option value="technology">Technology & IT</option>
+                <option value="business">Business & Management</option>
+                <option value="science">Science & Engineering</option>
+                <option value="arts">Arts & Humanities</option>
+                <option value="design">Design & Creativity</option>
+                <option value="health">Health & Medicine</option>
+                <option value="finance">Finance & Accounting</option>
+                <option value="personal_dev">Personal Development</option>
+            </select>
+            <textarea ref={descref} rows={5} placeholder="Course Description"></textarea>
+            <button onClick={addCourse}>Submit</button>
+        </div>
+    );
 }
 
-export default AddCourse
+export default AddCourse;

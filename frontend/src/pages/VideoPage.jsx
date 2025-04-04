@@ -38,7 +38,6 @@ function VideoPage() {
         // console.log(loading, islogged, course, video, userid);
 
         //work on course and video 
-        // addComment(userid._id, video, "I love you")
         getcomments(video)
         getVideodata(video)
         getVideos(course)
