@@ -1,35 +1,60 @@
-body{
+body {
     background-color: white;
 }
 
-.uploadvideoform{
+.uploadvideoform {
     display: flex;
     flex-direction: column;
-    background-color: grey;
-    padding: 10px;
-    gap: 10px;
+    background-color: rgb(234, 230, 235);
+    padding: 50px;
+    gap: 20px;
+    color: black;
 }
 
-.messagebox{
+.uploadvideoform input[type="text"],
+.uploadvideoform input[type="file"],
+.uploadvideoform select,
+.uploadvideoform textarea,
+.uploadvideoform button {
+    font-size: 18px;
+    padding: 12px 16px; 
+    border-radius: 8px;
+    margin: 5px 0;
+    width: 100%; 
+}
+
+.uploadvideoform button {
+    background-color:#b637d6;
+    color: rgb(15, 14, 14);
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.uploadvideoform button:hover {
+    background-color:#13331b;
+}
+
+.messagebox {
     background-color: red;
-    color: white;
+    color: rgb(15, 14, 14);
     padding: 10px;
     width: max-content;
 }
 
-.head1{
+.head1 {
     padding: 20px;
+    color: black;
 }
 
-.videoflex{
+.videoflex {
     display: flex;
     flex-direction: column;
     gap: 10px;
     margin: 10px;
 }
 
-.videoflex div{
-    /* background-color: grey; */
+.videoflex div {
     color: rgb(60, 60, 60);
     padding: 10px;
     border-radius: 10px;
