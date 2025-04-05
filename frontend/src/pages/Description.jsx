@@ -83,7 +83,7 @@ const Description = () => {
       <div className="course-content-wrapper">
         {/* Left Side Image Section */}
         <div className="image-section">
-        <img src="/coding bg1.jpg" alt="Course" className="course-image" />
+        <img src="/coding bg1.jpg" alt="Course" className="course-image2" />
 
 
           {/* Back Button on Image */}
@@ -96,7 +96,7 @@ const Description = () => {
 
         {/* Right Side Content */}
         <div className="course-details-section">
-          <h1 className="course-title">{courseDetails.name || "Course Name Unavailable"}</h1>
+          <h1 className="course-title">{courseDetails.cname || "Course Name Unavailable"}</h1>
           <p className="course-description">
             {courseDetails.description || "No description available."}
           </p>
