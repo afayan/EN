@@ -8,7 +8,6 @@
 
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #e1e7f1;
   color: #1b1818;
 }
 
@@ -16,7 +15,7 @@ body {
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
-  background-color: white;
+  background-color: none;
 }
 
 /* Header styles */
@@ -30,8 +29,8 @@ body {
 }
 
 .dashboard-header h1 {
-  font-size: 28px;
-  color: #0f0b0b;
+  font-size: 2.5em;
+  color: var(--primary-color);
 }
 
 .user-profile {
@@ -46,6 +45,7 @@ body {
   color: black;
   border-radius: 5px;
   padding: 10px;
+  padding-inline: 30px;
   
 }
 .contactus{
@@ -54,13 +54,15 @@ body {
   color: black;
   border-radius: 5px;
   padding: 10px;
+  padding-inline: 30px;
 }
 .username {
   font-weight: 500;
-  background-color: #5df08e;
+  background-color: var(--text-dark);
   border-radius: 5px;
   padding: 10px;
   color: white;
+  padding-inline: 30px;
 }
 
 .avatar-placeholder {
@@ -72,6 +74,9 @@ body {
 
 .more-courses-section h2, .charts-section h2, .my-courses-section h2{
   margin-block: 40px;
+  font-size: 1.8em;
+  font-weight: 500;
+  color: var(--text-dark);
 }
 
 /* Section styles */
@@ -97,7 +102,6 @@ section h2 {
   flex-direction: column;
   gap: 20px;
   max-height: 30vh;
-  overflow-y: scroll;
  
 }
 
@@ -105,9 +109,10 @@ section h2 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 150px;
-  background-color:rgb(172, 161, 161);
-  color: black;
+  width: 250px;
+  background-color: var(--text-dark);;
+  box-shadow: 0 4px 6px rgb(190, 190, 190);
+  color: rgb(255, 255, 255);
   padding: 10px;
   border-radius: 10px;
 }
@@ -183,6 +188,7 @@ section h2 {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
   background-color: white;
+  box-shadow: 0 4px 6px rgb(190, 190, 190);
 }
 
 .course-card:hover {
@@ -213,7 +219,7 @@ section h2 {
 
 .progress-fill {
   height: 100%;
-  background-color: #0caa4e;
+  background-color: var(--primary-color);
 }
 
 .rating {
@@ -255,21 +261,21 @@ section h2 {
 }
 
 .continue-btn {
-  background-color: #8a16b8;
+  background-color: var(--text-dark);
   color: white;
 }
 
 .enroll-btn {
-  background-color: #8a16b8;
+  background-color: var(--text-dark);
   color: white;
 }
 
 .continue-btn:hover {
-  background-color: #13331b;
+  background-color: var(--text-light);
 }
 
 .enroll-btn:hover {
-  background-color:  #13331b;
+  background-color: var(--text-light);
 }
 
 /* Footer styles */
@@ -314,16 +320,17 @@ section h2 {
 }
 
 .result{
-  background-color: rgb(86, 171, 177);
   padding: 10px;
   border-radius: 10px;
-  color: white;
+  color: rgb(63, 63, 63);
 }
 
 .searchbar{
   padding: 10px;
   border-radius: 10px;
   width: 100%;
+  border: none;
+  box-shadow: 0 4px 6px rgb(190, 190, 190);
 }
 
 .charts-section{

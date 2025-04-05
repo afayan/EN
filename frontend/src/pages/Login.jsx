@@ -160,8 +160,9 @@ function Login() {
     <>
     <div className="largeparent">
 
-    <img src="/lime.jpg" alt="" className="hideonmobile"/>
     
+    {/* <div className="imgholder hideonmobile">
+    </div> */}
 
     <div className="loginformlarge">
 
@@ -179,7 +180,7 @@ function Login() {
       
     
      { !showlogin && <div className="loginform">
-        <h2>Sign Up</h2>
+        <h1>Sign Up</h1>
         <input disabled={loading} type="text" ref={usernameref} placeholder="username" />
         <input disabled={loading} type="text" ref={emailref} placeholder="email" />
         <input disabled={loading} type="password" ref={passwordref} placeholder="password" />
@@ -192,7 +193,7 @@ function Login() {
       </div>}
 
      { showlogin && <div className="loginform">
-        <h2>Login</h2>
+        <h1>Login</h1>
         <input disabled={loading} ref={loginemail} type="text" placeholder="email" />
         <input disabled={loading} ref={loginpassword} type="password" placeholder="password" />
         <button id="logbutton" disabled={loading} onClick={handleLogin}>Login</button>

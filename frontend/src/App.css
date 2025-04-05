@@ -11,7 +11,15 @@
 .loginform{
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 15px;
+  align-items: center;
+}
+
+.loginform h1{
+  padding-block: 20px;
+  font-weight: 500;
+  font-size: 2em;
+  color: var(--text-dark);
 }
 
 .loginform input{
@@ -51,26 +59,32 @@ button{
 }
 
 .select{
-  width: 200px;
+  width: max-content;
   cursor: pointer;
+  background-color: var(--nav-bg);
+  border-radius: 10px;
+  box-shadow: 0 9px 9px var(--box-shadow-light);
+  margin-left: 25%;
 }
 
 .select button{
-  width: 50%;
+  width: 150px !important;
   padding: 10px;
   background-color: transparent;
   border: none;
+  color: white;
+  font-weight: 500;
 }
 
 .scrollparent{
-  height: 10px;
-  background-color: white;
+  height: 10px; 
 }
 
 .scrollparent div{
   width: 50%;
+  height: 100%;
   height: inherit;
-  background-image: var(--grad);
+  background-color: var(--text-light);
   border-radius: 10px;
 }
 
@@ -80,24 +94,37 @@ button{
   height: 90vh;
 }
 
-.largeparent img{
+.imgholder{
   width: 50%;
   flex: 1;
   height: 90vh;
+  background-color: var(--nav-bg);
 }
 
 .loginformlarge{
-  background-color: rgb(255, 255, 255);
   flex: 1;
+  position: absolute;
+  transform: translateX(-50%);
   padding: 50px;
+  width: 50vw;
+  box-shadow: 0 4px 6px rgb(190, 190, 190);
+  background-color: var(--box-shadow-light);
+  left: 50%;
+  height: 90vh;
 }
 
-.largeparent input, button{
+.largeparent input, .largeparent button{
   padding: 10px;
+  box-shadow: 0 4px 6px var(--box-shadow-light);
+  width: 80%;
+  font-size: 0.9em;
 }
+
 
 #logbutton{
-  background-image: var(--grad);
+  background-color: var(--primary-color);
+  color: var(--bg-color);
+  border-radius: 6px;
   border: none;
 }
 

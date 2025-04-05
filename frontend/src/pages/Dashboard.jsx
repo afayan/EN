@@ -184,7 +184,7 @@ function Dashboard() {
         
        searchResults.length ? <div className="searchresults">
         {searchResults.map((s)=>{
-          return <div key={s.cname} className='result'>{s.cname}</div>
+          return <div key={s.cname} onClick={()=>navigate('/description/'+s._id)} className='result'>{s.cname}</div>
         })}
       </div> : <></>
 
@@ -197,7 +197,7 @@ function Dashboard() {
         <h2>Popular Courses</h2>
         <div className="charts-container">
           {popularCourses.map(course => (
-            <div key={course.id} className="chart-item">
+            <div key={course._id} className="chart-item" onClick={()=>navigate('/description/'+course._id)}>
               {/* <div className="chart-circle">
                 <div className="chart-value">{course.title}%</div>
               </div> */}
@@ -210,10 +210,10 @@ function Dashboard() {
 
         <span>
 
-          <h2>Interested courses</h2>
+        <h2>Interested courses</h2>
         <div className="charts-container">
           {interestedCourses.map(course => (
-            <div key={course.id} className="chart-item">
+            <div key={course._id} className="chart-item" onClick={()=>navigate('/description/'+course._id)}>
               {/* <div className="chart-circle">
                 <div className="chart-value">{course.title}%</div>
               </div> */}
@@ -269,7 +269,7 @@ function Dashboard() {
                 <h3>{course.cname}</h3>
                 <p className="instructor">Instructor: {course.faculty}</p>
                 <p className="rating-text">Rating: {course.rating}/5.0</p>
-                <button className="enroll-btn" onClick={() => navigate('/description/' + course._id)}>Enroll Now</button>
+                <button className="enroll-btn" onClick={() => navigate('/description/' + course._id)}>Learn More</button>
 
               </div>
             </div>

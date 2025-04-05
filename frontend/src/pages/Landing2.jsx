@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import './Landing2.css';
+import { useNavigate } from 'react-router-dom';
 
 export default function Landing2() {
   const [searchQuery, setSearchQuery] = useState('');
+  const navigate = useNavigate()
   
   return (
     <div className="container">
@@ -18,7 +20,7 @@ export default function Landing2() {
             <li><a href="#">Blog</a></li>
           </ul>
         </nav>
-        <a href="#" className="register-btn">Register</a>
+        <a className="register-btn" onClick={()=>navigate('/login')}>Register</a>
       </header>
 
       <div className="lpcontainer">
@@ -28,14 +30,14 @@ export default function Landing2() {
       <div className="hero">
         <div className="hero-content">
           <h1 className="hero-title">
-            Best Learning<br />
-            Education Platform<br />
+            Trusted
+            <br />
+            E Learning platform
+            <br />
             <span className="text-highlight">in The World</span>
           </h1>
           <p className="hero-description">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Audax negotium, dicerem impudens, nisi hoc institut
-            translatum ad philosophos nostros esset.
+          Madarchod Randi ke bacche Oye bosdike madarchod bhen ke lode tere gand me lohe ka danda garam karke dalu randwe tujhetho gali ke kutte gand pe chut rakh ke katenge me bata raha hu tere lode pe madhu makkhi Katelode ke ando pe Road roller chale tu kab bathroom me muthne Jaye tho Tera loda ghir Jaye fir
           </p>
           
           <div className="search-box">
