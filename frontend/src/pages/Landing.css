@@ -8,7 +8,6 @@
 
 body {
   font-family: Arial, sans-serif;
-  background: radial-gradient(ellipse at bottom, #000000 0%, #0c0d13 100%);
   color: white;
   overflow-x: hidden;
   min-height: 100vh;
@@ -21,7 +20,6 @@ nav {
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  background: rgba(0, 0, 0, 0.8);
   position: sticky;
   top: 0;
   z-index: 1000;

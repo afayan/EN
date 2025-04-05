@@ -1,19 +1,44 @@
 .inputform{
-    background-color: rgb(188, 187, 187);
+    background-color: white;
     display: flex;
     flex-direction: column;
     gap: 20px;
     padding: 20px;
+    color: black;
     width: 50%;
-    transform: translate(50%, 30%);
+    transform: translate(50%, 4%);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.inputform input{
-    padding: 10px;
-    border: none;
+.inputform input, .inputform select, .inputform textarea{
+    padding: 12px;
+    border: 2px solid #4e4b4b;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 100%;
+    box-sizing: border-box;
+ 
+}
+
+.inputform input[type='file']{
+    font-size: 16px;
+}
+
+.inputform select{
+    font-size: 18px;
 }
 
 .inputform button{
     border: none;
-    background-image: var(--grad);
+    /* background-image: var(--grad); */
+    color: white;
+    padding: 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: rgb(36, 218, 60);
+}
+
+.inputform button:hover{
+    opacity: 0.8;
 }

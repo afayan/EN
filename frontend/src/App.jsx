@@ -12,8 +12,9 @@ import AddCourse from './pages/AddCourse'
 import Upload from './pages/Upload'
 import Course from './pages/Course'
 import AdminLogin from './pages/AdminLogin'
-import Landing2 from './pages/Landing2'
+import Description from './pages/Description'
 import Dummy from './pages/Dummy'
+import CoursePage from './pages/Description'
 
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
       <Route path='/upload' element={<Upload/>} />
       <Route path='/course/:cid' element={<Course/>} />
       <Route path='admin' element={<AdminLogin/>} />
+      <Route path='Description' element={<Description/>}/>
       </Routes>
     </>
   )
