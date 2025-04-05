@@ -12,6 +12,7 @@ import AddCourse from './pages/AddCourse'
 import Upload from './pages/Upload'
 import Course from './pages/Course'
 import AdminLogin from './pages/AdminLogin'
+import Landing2 from './pages/Landing2'
 import Dummy from './pages/Dummy'
 
 
@@ -22,7 +23,7 @@ function App() {
     <>
       <Routes>
       <Route path='*' element={<Landing/>} />
-      <Route path='/' element={<Landing/>} />
+      <Route path='/' element={<Landing2/>} />
       <Route path='/login' element={<Login/>} />
       <Route path='/dashboard' element={<Dashboard/>} />
       <Route path='/landing' element={<Landing/>} />
