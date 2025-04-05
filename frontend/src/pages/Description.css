@@ -5,7 +5,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: #f3e8ff; /* Light Purple Background */
+    background-color: #e0e0e0; /* Light Purple Background */
     padding: 20px;
     position: relative;
     overflow: hidden; /* Prevent bubbles from overflowing */
@@ -27,7 +27,7 @@
     bottom: -50px; /* Start below the screen */
     width: 40px;
     height: 40px;
-    background-color: rgba(235, 17, 162, 0.7); /* Light purple with transparency */
+    background-color: rgba(29, 135, 221, 0.7); /* Light purple with transparency */
     border-radius: 50%;
     animation: float 6s infinite linear;
     opacity: 0.8;
@@ -58,20 +58,20 @@
 
 /* Course Title */
 .course-title {
-    font-size: 36px;
+    font-size: 3em;
     font-weight: bold;
-    color: #6a0dad; /* Dark Purple */
+    color: var(--primary-color);
     margin-bottom: 15px;
 }
 .course-title:hover {
-    color: #dd17bc; /* Slightly darker purple */
-    font-size: 40px;
+    color: #1126e6; /* Slightly darker purple */
+    font-size: 3.5em;
 }
 
 /* Course Description */
 .course-description {
-    font-size: 18px;
-    color: #4a4a4a;
+    font-size: 1.3em;
+    color: #110b0b;
     text-align: center;
     max-width: 600px;
     margin-bottom: 20px;
@@ -79,7 +79,7 @@
 
 /* Enroll Now Button */
 .enroll-button {
-    background-color: #6a0dad; /* Purple */
+    background-color: #0e110f; /* Purple */
     color: white;
     font-size: 18px;
     padding: 12px 24px;
@@ -90,7 +90,7 @@
 }
 
 .enroll-button:hover {
-    background-color: #dd17bc; /* Slightly darker purple */
+    background-color: #7fb3a3;
 }
 
 /* Back Button Container (Bottom Left) */
@@ -102,7 +102,7 @@
 
 /* Back Button */
 .back-button {
-    background-color: #a64dff; /* Lighter Purple */
+    background-color: #0e110f;
     color: white;
     font-size: 16px;
     padding: 8px 16px;
@@ -113,5 +113,67 @@
 }
 
 .back-button:hover {
-    background-color:  #dd17bc; /* Darker shade */
+    background-color: #7fb3a3;
 }
+
+
+
+
+.course-content-wrapper {
+    display: flex;
+    gap: 20px;
+    margin-top: 40px;
+    padding: 20px;
+    align-items: flex-start;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .image-section {
+    position: relative;
+    flex: 1 1 40%;
+    max-width: 500px;
+  }
+  
+  .course-image {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    object-fit: cover;
+  }
+  
+  .back-button-container {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+  }
+  
+  .course-details-section {
+    flex: 1 1 50%;
+    max-width: 600px;
+  }
+  
+  .course-title {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  .course-description {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+  }
+  
+  .enroll-button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #222;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  
+  .enroll-button:hover {
+    background-color: #444;
+  }
+  
