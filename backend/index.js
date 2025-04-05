@@ -614,6 +614,76 @@ function checkAdmin(req, res, next) {
 
 }
 
+app.get('/api/course-details/:id', async (req, res) => {
+  try {
+    const { id: courseId } = req.params;
+    const userId = req.query.userId;
+    
+    if (!courseId) {
+      return res.status(400).json({ error: 'Course ID is required' });
+    }
+    
+    // Find the course
+    const course = await coursemodel.findById(courseId);
+    
+    if (!course) {
+      return res.status(404).json({ error: 'Course not found' });
+    }
+    
+    // Get enrollment count
+    const enrollmentCount = await enrolledmodel.countDocuments({ courseid: courseId });
+    
+    // Check if the user is enrolled (if userId is provided)
+    let isEnrolled = false;
+    if (userId) {
+      const enrollment = await enrolledmodel.findOne({ 
+        userid: userId, 
+        courseid: courseId 
+      });
+      isEnrolled = !!enrollment;
+    }
+    
+    // Get videos count and video information
+    const videos = await videomodel.find({ courseid: courseId });
+    const videoCount = videos.length;
+    
+    // Get faculty details (assuming faculty is stored as ID)
+    // If faculty is just a name string, you can skip this part
+    // const facultyDetails = await facultymodel.findById(course.faculty);
+    
+    // Prepare response
+    const courseDetails = {
+      courseId: course._id,
+      name: course.cname,
+      category: course.category,
+      faculty: course.faculty,
+      description: course.description,
+      image: course.image,
+      creator: course.creator,
+      createdDate: course.created,
+      
+      // Additional stats
+      enrollmentCount,
+      videoCount,
+      isEnrolled,
+      
+      // Optional: include video details if the user is enrolled
+      videos: isEnrolled ? videos.map(video => ({
+        id: video._id,
+        title: video.title,
+        description: video.description,
+        videoUrl: video.videoUrl
+      })) : []
+    };
+    
+    return res.status(200).json(courseDetails);
+    
+  } catch (error) {
+    console.error('Error fetching course details:', error);
+    return res.status(500).json({ error: 'Server error while fetching course details' });
+  }
+});
+
 
 async function getUserCourseCompletionStatus(userId) {
   try {

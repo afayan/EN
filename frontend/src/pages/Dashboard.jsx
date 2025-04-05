@@ -269,7 +269,7 @@ function Dashboard() {
                 <h3>{course.cname}</h3>
                 <p className="instructor">Instructor: {course.faculty}</p>
                 <p className="rating-text">Rating: {course.rating}/5.0</p>
-                <button className="enroll-btn" onClick={() => navigate('/Description/' + course._id)}>Enroll Now</button>
+                <button className="enroll-btn" onClick={() => navigate('/description/' + course._id)}>Enroll Now</button>
 
               </div>
             </div>
