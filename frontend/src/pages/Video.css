@@ -24,7 +24,7 @@ body {
 }
 
 .uploadvideoform button {
-    background-color:#b637d6;
+    background-color: rgb(36, 218, 60);
     color: rgb(15, 14, 14);
     border: none;
     cursor: pointer;
@@ -32,7 +32,7 @@ body {
 }
 
 .uploadvideoform button:hover {
-    background-color:#13331b;
+    background-color:#93c29f;
 }
 
 .messagebox {
