@@ -83,7 +83,7 @@ const Description = () => {
       <div className="course-content-wrapper">
         {/* Left Side Image Section */}
         <div className="image-section">
-        <img src="/react-Login.png" alt="Course" className="course-image" />
+        <img src="/coding bg1.jpg" alt="Course" className="course-image" />
 
 
           {/* Back Button on Image */}
