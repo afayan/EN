@@ -156,12 +156,23 @@ function Dashboard() {
   return (
     <div className="dashboard">
       <header className="dashboard-header">
-        <h1>Dashboard</h1>
-        <div className="user-profile" onClick={()=>navigate('/profile')}>
-          <span className="username">My Profile</span>
-          <div className="avatar-placeholder"></div>
-        </div>
-      </header>
+  <h1>Dashboard</h1>
+
+  <div className="header-right">
+    {isadmin && (
+      <div className="button-group">
+        <button onClick={() => navigate('/addcourse')}>Add Course</button>
+        <button onClick={() => navigate('/upload')}>Upload Video</button>
+      </div>
+    )}
+    
+    <div className="user-profile" onClick={() => navigate('/profile')}>
+      <span className="username">My Profile</span>
+      {/* <div className="avatar-placeholder"></div> */}
+    </div>
+  </div>
+</header>
+
 
 
       <input type="text" placeholder='search courses' className='searchbar' onChange={(e)=>search(e)}/>
@@ -209,11 +220,11 @@ function Dashboard() {
         </div>
         </span>
 
-        <span>
-         {isadmin && <button onClick={()=>navigate('/addcourse')}>Add course</button>}
-         {isadmin && <button onClick={()=>navigate('/upload')}>Upload</button>}
+        {/* <span className="button-group">
+  {isadmin && <button onClick={() => navigate('/addcourse')}>Add course</button>}
+  {isadmin && <button onClick={() => navigate('/upload')}>Upload</button>}
+</span> */}
 
-        </span>
 
       </section>
 

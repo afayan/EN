@@ -8,14 +8,15 @@
 
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f5f7fa;
-  color: #ffffff;
+  background-color: #e1e7f1;
+  color: #1b1818;
 }
 
 .dashboard {
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
+  background-color: white;
 }
 
 /* Header styles */
@@ -30,7 +31,7 @@ body {
 
 .dashboard-header h1 {
   font-size: 28px;
-  color: #ffffff;
+  color: #0f0b0b;
 }
 
 .user-profile {
@@ -78,6 +79,7 @@ section h2 {
   gap: 20px;
   max-height: 30vh;
   overflow-y: scroll;
+ 
 }
 
 .chart-item {
@@ -85,7 +87,7 @@ section h2 {
   flex-direction: column;
   align-items: center;
   width: 150px;
-  background-color:white;
+  background-color:rgb(172, 161, 161);
   color: black;
   padding: 10px;
   border-radius: 10px;
@@ -116,11 +118,33 @@ section h2 {
   transform: rotate(45deg);
 }
 
-.chart-value {
-  font-size: 20px;
-  font-weight: bold;
-  color: #2c3e50;
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
+
+/* Button styles inside header */
+.button-group {
+  display: flex;
+  gap: 10px;
+}
+
+.button-group button {
+  padding: 8px 12px;
+  border: none;
+  background-color: #5fe94d;
+  color: rgb(19, 12, 12);
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+.button-group button:hover {
+  background-color: #23411b;
+}
+
 
 .chart-title {
   text-align: center;
@@ -178,7 +202,7 @@ section h2 {
   top: 10px;
   right: 10px;
   background-color: rgba(0, 0, 0, 0.7);
-  color: #fff;
+  color: #2c2020;
   padding: 5px 10px;
   border-radius: 15px;
   font-size: 14px;
@@ -233,10 +257,10 @@ section h2 {
 .dashboard-footer {
   text-align: center;
   padding: 20px 0;
-  color: #7f8c8d;
+  color: #083538;
   font-size: 14px;
   margin-top: 40px;
-  border-top: 1px solid #e0e0e0;
+  border-top: 1px solid #312121;
 }
 
 /* Media Queries for Responsiveness */
@@ -271,9 +295,10 @@ section h2 {
 }
 
 .result{
-  background-color: grey;
+  background-color: rgb(86, 171, 177);
   padding: 10px;
   border-radius: 10px;
+  color: white;
 }
 
 .searchbar{
