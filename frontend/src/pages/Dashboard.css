@@ -40,8 +40,27 @@ body {
   gap: 10px;
 }
 
+.aboutus{
+  font-weight: 500;
+  background-color:white;
+  color: black;
+  border-radius: 5px;
+  padding: 10px;
+  
+}
+.contactus{
+  font-weight: 500;
+  background-color:white;
+  color: black;
+  border-radius: 5px;
+  padding: 10px;
+}
 .username {
   font-weight: 500;
+  background-color: #5df08e;
+  border-radius: 5px;
+  padding: 10px;
+  color: white;
 }
 
 .avatar-placeholder {

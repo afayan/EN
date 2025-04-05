@@ -83,4 +83,19 @@ router.post("/login", async (req, res) => {
   }
 });
 
+app.get('/api/course/:id', async (req, res) => {
+  const courseId = req.params.id;
+  try {
+    const course = await CourseModel.findById(courseId);
+    if (!course) {
+      return res.status(404).json({ error: 'Course not found' });
+    }
+    res.json(course);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+
 export default router;
