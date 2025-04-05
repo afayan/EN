@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom"; // Import useParams for dynamic ID
+import { useNavigate, useParams } from "react-router-dom"; 
 import "./Description.css";
 
 const CoursePage = () => {
@@ -34,7 +34,7 @@ const CoursePage = () => {
 
 
 
-  // inside CoursePage component...
+  
 
   // Enroll function
   const enroll = async () => {
