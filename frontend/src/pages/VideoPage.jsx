@@ -172,9 +172,9 @@ function VideoPage() {
 
   return (
     <div className="videopage">
+    
 
     <div className="leftside">
-
     <h1 className="head1">{title}</h1>
 
     <div className="videocontainer">

@@ -8,13 +8,23 @@ body {
     gap: 20px;
 }
 
+.head1{
+    color: var(--text-dark);
+}
+
+h1{
+    color: var(--text-dark);
+}
+
 .videocontainer {
-    width: 65vw;
-    margin: 20px 40px;
+    width: 55vw;
+    margin: 13px;
 }
 
 .videocontainer video {
     width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgb(190, 190, 190);
 }
 
 .buttonsdiv {
@@ -25,24 +35,30 @@ body {
 
 .buttonsdiv button {
     padding: 10px 20px;
-    background-color:#8a16b8;
+    background-color:var(--text-light);
+    box-shadow: 0 4px 6px rgb(190, 190, 190);
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-weight: bold;
     margin-left: 10px;
+    transition: all 0.2s;
+}
+
+.buttonsdiv :nth-child(1){
+    background-color: rgb(190, 103, 103);
 }
 
 .buttonsdiv button:hover {
-    background-color: #13331b;
+    background-color: #cfcfcf;
+    color: rgb(79, 79, 79);
 }
 
 .desc {
     font-family: Arial, Helvetica, sans-serif;
     padding: 20px;
-    background-color: rgb(247, 247, 247);
-    color: black;
+    color: var(--text-dark);
     margin: 10px;
     border-radius: 10px;
     width: 65vw;
@@ -51,20 +67,20 @@ body {
 .leftside {
     display: flex;
     flex-direction: column;
-    background-color: rgb(248, 245, 245);
+    margin-left: 20px;
+    width: max-content;
 }
 
 .playlistdiv {
-    background-color: rgb(255, 255, 255);
     flex: 1;
-    margin-left: 20px;
+    margin-left: 0px;
     padding: 10px;
 }
 
 .playlistelement {
     padding: 15px;
-    background-color: rgb(240, 240, 240);
-    color: black;
+    background-color: var(--text-light);
+    color: rgb(225, 225, 225);
     margin: 8px 0;
     border-radius: 8px;
     cursor: pointer;
@@ -72,7 +88,7 @@ body {
 }
 
 .selected {
-    background-image: var(--grad);
+    background-color: var(--primary-color);
     color: white;
 }
 
@@ -84,14 +100,14 @@ body {
 .commentsdiv input {
     padding: 10px;
     margin: 10px;
-    width: 90%;
+    width: 60%;
    
 }
 
 .commentsdiv button {
     padding: 10px 20px;
     margin-left: 10px;
-    background-color: #8a16b8;
+    background-color: var(--text-dark);
     color: white;
     border: none;
     border-radius: 5px;
@@ -99,17 +115,20 @@ body {
     font-weight: bold;
 }
 
-.commentsdiv button:hover {
-    background-color:#13331b;
-}
+/* .commentsdiv button:hover {
+    background-color:#6c6c6c;
+} */
+
+
 
 .comment {
-    background-color: rgb(145, 139, 139);
+    background-color: rgb(255, 255, 255);
     color: black;
     padding: 16px;
     width: max-content;
     border-radius: 10px;
     margin: 10px;
+    box-shadow: 0 4px 6px rgb(190, 190, 190);
 }
 
 .comment p {
