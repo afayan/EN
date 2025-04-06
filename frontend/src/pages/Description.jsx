@@ -72,9 +72,9 @@ const Description = () => {
       </div>
 
       <div className="course-content-wrapper">
+        {/* Left Side Image Section */}
         <div className="image-section">
           <img src="/coding bg1.jpg" alt="Course" className="course-image2" />
-
           <div className="back-button-container">
             <button className="back-button" onClick={() => navigate("/Dashboard")}>
               Back
@@ -88,32 +88,10 @@ const Description = () => {
           <p className="course-description">
             {courseDetails.description || "No description available."}
           </p>
-
-          {courseDetails.isEnrolled ? (
-            <div className="enrolled-content">
-              <h2>Course Content</h2>
-              {courseDetails.videos && courseDetails.videos.length > 0 ? (
-                <ul className="video-list">
-                  {courseDetails.videos.map(video => (
-                    <li key={video.id} className="video-item">
-                      <h3>{video.title}</h3>
-                      <p>{video.description}</p>
-                    </li>
-                  ))}
-                </ul>
-              ) : (
-                <p>No videos available for this course yet.</p>
-              )}
-            </div>
-          ) : (
-            <button className="enroll-button" onClick={enroll}>
-              Enroll Now
-            </button>
-          )}
-          {/* Always show Enroll button only */}
-          {/* <button className="enroll-button" onClick={enroll}>
+          
+          <button className="enroll-button" onClick={enroll}>
             Enroll Now
-          </button> */}
+          </button>
         </div>
       </div>
     </div>
