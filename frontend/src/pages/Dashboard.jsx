@@ -203,7 +203,7 @@ function Dashboard() {
     )}
     
     <div className="user-profile">
-      <span className="contactus" onClick={() => navigate('/')}>Home</span>
+      <span className="contactus" onClick={() => navigate('/courses')}>Home</span>
       <span className="aboutus" onClick={() => navigate('/About')}>About Us</span>
       <span className="contactus" onClick={() => navigate('/Contact')}>Contact Us</span>
       <span className="username" onClick={() => navigate('/profile')}>My Profile</span>

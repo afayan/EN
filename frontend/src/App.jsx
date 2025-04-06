@@ -17,6 +17,7 @@ import Landing2 from './pages/Landing2'
 import About from './pages/About'
 import Contact from './pages/Contact'
 import Dummy from './pages/Dummy'
+import Courses from './pages/Courses'
 // import CoursePage from './pages/Description'
 
 
@@ -26,11 +27,11 @@ function App() {
   return (
     <>
       <Routes>
-      <Route path='*' element={<Landing/>} />
+      <Route path='*' element={<Landing2/>} />
       <Route path='/' element={<Landing2/>} />
       <Route path='/login' element={<Login/>} />
       <Route path='/dashboard' element={<Dashboard/>} />
-      <Route path='/landing' element={<Landing/>} />
+      <Route path='/landing' element={<Landing2/>} />
       <Route path='/video/:course/:video' element={<VideoPage/>}/>
       <Route path='/profile' element={<ProfilePage/>} />
       <Route path='/addcourse' element={<AddCourse/>} />
@@ -40,7 +41,7 @@ function App() {
       <Route path='/description/:cid' element={<Description/>}/>
       <Route path='/about' element={<About/>} />
       <Route path='/contact' element={<Contact/>} />
-      
+      <Route path='/courses' element={<Courses/>} />      
       </Routes>
     </>
   )

@@ -341,3 +341,28 @@ section h2 {
 .graphdiv{
   margin-top: 20px;
 }
+
+.cpageheader{
+  padding-inline: 50px;
+}
+
+.filters{
+  display: flex;
+  margin-top: 20px;
+}
+
+.filters div{
+  width: max-content;
+  background-color: var(--text-dark);
+  border-radius: 8px;
+  color: white;
+  text-align: center;
+  margin: 10px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+#all{
+  background-color: var(--primary-color);
+  padding-inline: 20px;
+}
