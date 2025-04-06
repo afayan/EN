@@ -33,10 +33,10 @@ const Sidebar = ({ setShowSettings, username }) => {
         <h3>Welcome {username}</h3>
       </div>
       <ul className="menu">
-      <li onClick={() => navigate('/dashboard')}>📊 Dashboard</li>
-      <li onClick={() => navigate('/dashboard')}>📄 Courses</li>
-      <li onClick={() => navigate('/tests')}>📝 My Tests</li>
-      <li onClick={() => navigate('/results')}>📄 My Results</li>
+      <li onClick={() => navigate('/dashboard')}>Dashboard</li>
+      <li onClick={() => navigate('/dashboard')}>Courses</li>
+      <li onClick={() => navigate('/tests')}>My Tests</li>
+      <li onClick={() => navigate('/results')}>My Results</li>
       <li onClick={handleOpenSettings}>⚙️ Settings</li>
     </ul>
       <button className="logout-btn" onClick={handleLogout}>Logout</button>
