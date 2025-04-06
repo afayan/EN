@@ -166,12 +166,11 @@ function Dashboard() {
       </div>
     )}
     
-    <div className="user-profile" onClick={() => navigate('/profile')}>
-    <span className="contactus">Home</span>
-    <span className="aboutus">About Us</span>
-    <span className="contactus">Contact Us</span>
-      <span className="username">My Profile</span>
-      {/* <div className="avatar-placeholder"></div> */}
+    <div className="user-profile">
+      <span className="contactus" onClick={() => navigate('/')}>Home</span>
+      <span className="aboutus" onClick={() => navigate('/About')}>About Us</span>
+      <span className="contactus" onClick={() => navigate('/Contact')}>Contact Us</span>
+      <span className="username" onClick={() => navigate('/profile')}>My Profile</span>
     </div>
   </div>
 </header>

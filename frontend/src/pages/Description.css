@@ -10,74 +10,41 @@
     margin: 0;
     position: relative;
     overflow: hidden;
-}
-
-/* Floating Bubbles */
-.bubbles {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    overflow: hidden;
-    pointer-events: none;
-}
-
-.bubble {
-    position: absolute;
-    bottom: -50px;
-    width: 40px;
-    height: 40px;
-    background-color: rgba(0, 129, 235, 0.7);
-    border-radius: 50%;
-    animation: float 6s infinite linear;
-    opacity: 0.8;
-}
-
-.bubble:nth-child(1) { left: 10%; width: 30px; height: 30px; animation-duration: 7s; }
-.bubble:nth-child(2) { left: 25%; width: 50px; height: 50px; animation-duration: 8s; }
-.bubble:nth-child(3) { left: 50%; width: 40px; height: 40px; animation-duration: 6s; }
-.bubble:nth-child(4) { left: 70%; width: 35px; height: 35px; animation-duration: 5s; }
-.bubble:nth-child(5) { left: 90%; width: 45px; height: 45px; animation-duration: 9s; }
-
-@keyframes float {
-    0% { transform: translateY(0) scale(1); opacity: 0.8; }
-    50% { transform: translateY(-50vh) scale(1.2); opacity: 0.6; }
-    100% { transform: translateY(-100vh) scale(1.5); opacity: 0; }
-}
-
-/* Flex container for image and content */
-.course-content-wrapper {
+  }
+  
+  
+  /* Flex container for image and content */
+  .course-content-wrapper {
     display: flex;
     flex-direction: row;
     width: 100%;
     height: 100vh;
-}
-
-/* Image Section - Left Half */
-.image-section {
+  }
+  
+  /* Image Section - Left Half */
+  .image-section {
     flex: 1;
     position: relative;
     max-width: 50%;
     height: 100%;
     overflow: hidden;
-}
-
-.course-image2 {
+  }
+  
+  .course-image2 {
     width: 100%;
     height: 100%;
     object-fit: cover;
     border-radius: 0;
-}
-
-/* Back Button */
-.back-button-container {
-    position:absolute;
+  }
+  
+  /* Back Button */
+  .back-button-container {
+    position: absolute;
     top: 20px;
     left: 20px;
-}
-
-.back-button {
+  }
+  
+  .back-button {
     background-color: #0e110f;
     color: white;
     font-size: 16px;
@@ -86,83 +53,61 @@
     border-radius: 6px;
     cursor: pointer;
     transition: 0.3s;
-}
-
-.back-button:hover {
+  }
+  
+  .back-button:hover {
     background-color: #7fb3a3;
-}
-
-/* Course Details - Right Half */
-.course-details-section {
+  }
+  
+  /* Course Details - Right Half */
+  .course-details-section {
     flex: 1;
     max-width: 50%;
     padding: 40px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-}
-
-.course-title {
+  }
+  
+  .course-title {
     font-size: 2.5rem;
     font-weight: bold;
     color: #0004fc;
     margin-bottom: 20px;
-    
-}
-
-.course-title:hover {
-
+  }
+  
+  .course-title:hover {
     color: var(--primary-color, #222);
     font-size: 2.7rem;
-}
-
-.course-description {
+  }
+  
+  .course-description {
     font-size: 1.3rem;
     color: #110b0b;
     margin-bottom: 30px;
-}
-
-/* Enroll Button */
-.enroll-button {
-    background-color: #0e110f;
+  }
+  
+  /* Our Courses Button  */
+  .enroll-button {
+    background-color: #0e110f; /* purple like the image */
     color: white;
-    font-size: 18px;
-    padding: 12px 24px;
+    font-size: 16px;
+    padding: 10px 20px;
     border: none;
-    border-radius: 8px;
+    border-radius: 6px; /* slightly rounded corners */
     cursor: pointer;
-    transition: 0.3s;
-    margin-top:80px;
-}
-
-.enroll-button:hover {
+    transition: background-color 0.3s ease;
+    width: 250px;
+    display: block;
+    margin: 40px auto 0;
+  }
+  
+  .enroll-button:hover {
+    background-color: #732d91; /* darker purple on hover */
+  }
+  
+  
+  .enroll-button:hover {
     background-color: #7fb3a3;
-}
-
-/* Enrolled course content styles */
-.enrolled-content {
-    margin-top: 20px;
-}
-
-.video-list {
-    list-style: none;
-    padding: 0;
-}
-
-.video-item {
-    margin-bottom: 15px;
-}
-
-.watch-button {
-    display: inline-block;
-    margin-top: 5px;
-    background-color: #444;
-    color: white;
-    padding: 6px 12px;
-    border-radius: 5px;
-    text-decoration: none;
-}
-
-.watch-button:hover {
-    background-color: #666;
-}
+  }
+  
