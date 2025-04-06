@@ -2,6 +2,15 @@ import React, { useEffect, useState } from 'react'
 import useLogin from '../hooks/useLogin'
 import './Dashboard.css'
 import { useNavigate } from 'react-router-dom'
+import {
+  RadarChart,
+  PolarGrid,
+  PolarAngleAxis,
+  PolarRadiusAxis,
+  Radar,
+  Legend
+} from 'recharts';
+
 
 
 function Dashboard() {
@@ -17,6 +26,7 @@ function Dashboard() {
   const [searchResults, setSearchResults] = useState([])
   const navigate = useNavigate()
   const [isadmin, setisadmin] = useState(false)
+  const [gdata, setgdata] = useState({})
 
   if (!checking && !islogged) {
 
@@ -31,24 +41,19 @@ function Dashboard() {
   useEffect(()=>{
 
     if (!checking) {
-
       if (userid?.admin) {
         // alert("admin")
         setisadmin(true)
-
         console.log("its an admin");
-        
       }
-  
       // alert("Not logged")
     }
-  
-
 
     if (sessionStorage.getItem('auth')){
       
       getcourses()
       getDashboardInfo(userid)
+      fetchSpiderGraphData()
 
       console.log("user",userid, checking);
       
@@ -78,6 +83,37 @@ function Dashboard() {
       console.log(d2);
       setmorecourses(d2.courses)
       
+    }
+
+    async function fetchSpiderGraphData() {
+      try {
+        // Make the API call
+        const response = await fetch('/api/graphinfo', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          // Add any request body if needed
+          body: JSON.stringify({}),
+        });
+    
+        if (!response.ok) {
+          throw new Error(`API call failed with status: ${response.status}`);
+        }
+    
+        const data = await response.json();
+        
+        // Log the returned information
+    
+        // Log in a more visual format
+       console.log("spidergraph:",data);
+       
+        setgdata(data)
+        return data;
+      } catch (error) {
+        console.error('Error fetching spider graph data:', error);
+        throw error;
+      }
     }
 
 
@@ -227,6 +263,16 @@ function Dashboard() {
   {isadmin && <button onClick={() => navigate('/addcourse')}>Add course</button>}
   {isadmin && <button onClick={() => navigate('/upload')}>Upload</button>}
 </span> */}
+
+<span className='graphdiv'>
+<RadarChart outerRadius={90} width={430} height={250} data={gdata}>
+        <PolarGrid />
+        <PolarAngleAxis dataKey="subject" />
+        <PolarRadiusAxis angle={30} domain={[0, 8]}/>
+        <Radar name="Enrollments" dataKey="value" stroke="#8884d8" fill="#8884d8" fillOpacity={0.6} />
+        <Legend />
+  </RadarChart>
+</span>
 
 
       </section>

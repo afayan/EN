@@ -96,7 +96,7 @@ const Description = () => {
 
         {/* Right Side Content */}
         <div className="course-details-section">
-          <h1 className="course-title">{courseDetails.cname || "Course Name Unavailable"}</h1>
+          <h1 className="course-title">{courseDetails.name || "Course Name Unavailable"}</h1>
           <p className="course-description">
             {courseDetails.description || "No description available."}
           </p>
@@ -110,9 +110,6 @@ const Description = () => {
                     <li key={video.id} className="video-item">
                       <h3>{video.title}</h3>
                       <p>{video.description}</p>
-                      <a href={video.videoUrl} target="_blank" rel="noopener noreferrer" className="watch-button">
-                        Watch Video
-                      </a>
                     </li>
                   ))}
                 </ul>

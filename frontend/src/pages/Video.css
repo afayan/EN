@@ -24,15 +24,15 @@ body {
 }
 
 .uploadvideoform button {
-    background-color: rgb(36, 218, 60);
-    color: rgb(15, 14, 14);
+    background-color: var(--primary-color);
+    color: white;
     border: none;
     cursor: pointer;
     font-weight: bold;
 }
 
 .uploadvideoform button:hover {
-    background-color:#93c29f;
+    background-color:#bdbdbd;
 }
 
 .messagebox {
