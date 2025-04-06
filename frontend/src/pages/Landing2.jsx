@@ -12,11 +12,11 @@ export default function Landing2() {
         <div className="logo">EduNite</div>
         <nav>
           <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About Us</a></li>
-            <li><a href="#">Pages</a></li>
+            <li><a href="/Dashboard">Dashboard</a></li>
+            <li><a href="/about">About Us</a></li>
+            <li><a href="/contact">Contact Us</a></li>
             <li><a href="#">Services</a></li>
-            <li><a href="#">Courses</a></li>
+            <li><a href="/Dashboard">Courses</a></li>
             <li><a href="#">Blog</a></li>
           </ul>
         </nav>

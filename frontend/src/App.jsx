@@ -14,6 +14,8 @@ import Course from './pages/Course'
 import AdminLogin from './pages/AdminLogin'
 import Description from './pages/Description'
 import Landing2 from './pages/Landing2'
+import About from './pages/About'
+import Contact from './pages/Contact'
 import Dummy from './pages/Dummy'
 // import CoursePage from './pages/Description'
 
@@ -36,6 +38,9 @@ function App() {
       <Route path='/course/:cid' element={<Course/>} />
       <Route path='admin' element={<AdminLogin/>} />
       <Route path='/description/:cid' element={<Description/>}/>
+      <Route path='/about' element={<About/>} />
+      <Route path='/contact' element={<Contact/>} />
+      
       </Routes>
     </>
   )

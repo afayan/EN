@@ -11,14 +11,9 @@ const Description = () => {
   useEffect(() => {
     const fetchCourseDetails = async () => {
       try {
-        console.log('fetching details');
         const userId = JSON.parse(sessionStorage.getItem("auth"))?._id;
-        console.log(cid, userId);
-
         const response = await fetch(`/api/course-details/${cid}?userId=${userId}`);
         const data = await response.json();
-        console.log("Fetched course details:", data);
-
         if (response.ok && data) {
           setCourseDetails(data);
         } else {
@@ -36,22 +31,19 @@ const Description = () => {
 
   const enroll = async () => {
     try {
+      const userId = JSON.parse(sessionStorage.getItem("auth"))?._id;
       const response = await fetch("/api/enroll", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          userid: JSON.parse(sessionStorage.getItem("auth"))._id,
-          courseid: cid
-        })
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ userid: userId, courseid: cid })
       });
 
       const data = await response.json();
-      console.log("Enroll Response:", data);
-
-      if (response.ok) {
-        window.location.reload();
+      if (response.ok && courseDetails.videos && courseDetails.videos.length > 0) {
+        const videoId = courseDetails.videos[0]._id || courseDetails.videos[0].id;
+        navigate(`/video/${cid}/${videoId}`);
+      } else {
+        alert("Enrollment successful but no videos found.");
       }
     } catch (error) {
       console.error("Error enrolling in course:", error);
@@ -79,14 +71,10 @@ const Description = () => {
         ))}
       </div>
 
-      {/* Flex Wrapper for image and content */}
       <div className="course-content-wrapper">
-        {/* Left Side Image Section */}
         <div className="image-section">
-        <img src="/coding bg1.jpg" alt="Course" className="course-image2" />
+          <img src="/coding bg1.jpg" alt="Course" className="course-image2" />
 
-
-          {/* Back Button on Image */}
           <div className="back-button-container">
             <button className="back-button" onClick={() => navigate("/Dashboard")}>
               Back
@@ -122,6 +110,10 @@ const Description = () => {
               Enroll Now
             </button>
           )}
+          {/* Always show Enroll button only */}
+          <button className="enroll-button" onClick={enroll}>
+            Enroll Now
+          </button>
         </div>
       </div>
     </div>

@@ -36,7 +36,7 @@ function AdminLogin() {
 
       sessionStorage.setItem('auth', JSON.stringify(response.data.admin))
 
-      navigate('/addcourse')
+      navigate('/dashboard')
 
     } catch (err) {
       setError(err.response?.data?.message || 'Login failed. Please try again.');
