@@ -155,10 +155,10 @@ section h2 {
 }
 
 .button-group button {
-  padding: 8px 12px;
+  padding: 10px;
   border: none;
-  background-color: #5fe94d;
-  color: rgb(19, 12, 12);
+  background-color: var(--primary-color);
+  color: rgb(255, 255, 255);
   border-radius: 5px;
   cursor: pointer;
   font-weight: 500;
@@ -166,7 +166,7 @@ section h2 {
 }
 
 .button-group button:hover {
-  background-color: #23411b;
+  background-color: #c5c5c5;
 }
 
 
@@ -336,4 +336,8 @@ section h2 {
 .charts-section{
   display: flex;
   gap: 70px;
+}
+
+.graphdiv{
+  margin-top: 20px;
 }

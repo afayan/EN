@@ -191,15 +191,73 @@ app.post("/api/enroll", async (req, res) => {
 
 //  Show courses enrolled by a user
 
-app.post('/api/coursestatus', async (req, res)=>{
-  const {userid, cid} = req.body
+app.post('/api/graphinfo', async (req, res) => {
+  try {
+    // Get all enrollments
+    const enrollments = await enrolledmodel.find({});
+    
+    // Get all courses with their categories
+    const courses = await coursemodel.find({}, { _id: 1, category: 1 });
+    
+    // Create a map of course ID to category for quick lookup
+    const courseIdToCategoryMap = {};
+    courses.forEach(course => {
+      courseIdToCategoryMap[course._id.toString()] = course.category;
+    });
+    
+    // Count enrollments per category
+    const categoryCountMap = {};
+    
+    // Process each enrollment
+    enrollments.forEach(enrollment => {
+      const courseId = enrollment.courseid;
+      const category = courseIdToCategoryMap[courseId];
+      
+      // Only count if we found a valid category
+      if (category) {
+        if (categoryCountMap[category]) {
+          categoryCountMap[category]++;
+        } else {
+          categoryCountMap[category] = 1;
+        }
+      }
+    });
+    
+    // Prepare the two arrays needed for the spider graph
 
-  if (!userid || !cid) {
-    return res.json({ status: false, message: "User ID is required" });
+    console.log("ccmap",categoryCountMap);
+    
+
+    const categoriesArray = Object.keys(categoryCountMap);
+    const valuesArray = categoriesArray.map(category => categoryCountMap[category]);
+
+    console.log("carray",categoriesArray);
+
+    const result = []
+
+    categoriesArray.forEach((cat, i)=>{
+      var obj = {}
+      obj['subject'] = cat
+      obj['value'] = valuesArray[i]
+      result.push(obj)
+    })
+
+    console.log("res is",result);
+    
+    
+    
+    // Send the response
+    res.status(200).json(result);
+    
+  } catch (error) {
+    console.error('Error fetching graph data:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to fetch graph data',
+      error: error.message
+    });
   }
-
-  
-})
+});
 
 
 app.post("/api/showmycourses", async (req, res) => {
