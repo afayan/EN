@@ -154,13 +154,13 @@
 }
 
 .change-btn {
-  background-color: #000;
+  background-color:#007bff;
   color: #fff;
 }
 
 .delete-btn {
-  background-color: #ddd;
-  color: #333;
+  background-color: #ff0f0f;
+  color: white;
 }
 
 /* Input Fields */
