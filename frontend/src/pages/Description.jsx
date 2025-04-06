@@ -111,9 +111,9 @@ const Description = () => {
             </button>
           )}
           {/* Always show Enroll button only */}
-          <button className="enroll-button" onClick={enroll}>
+          {/* <button className="enroll-button" onClick={enroll}>
             Enroll Now
-          </button>
+          </button> */}
         </div>
       </div>
     </div>
