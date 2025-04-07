@@ -81,8 +81,8 @@
 
 /* Logout Button */
 .logout-btn {
-  margin-top: auto;
-  background-color: rgb(202, 91, 91);
+  margin-top: 180px;
+  background-color: rgb(230, 13, 13);
   color: white;
   padding: 10px;
   border: none;
@@ -90,6 +90,7 @@
   cursor: pointer;
   width: 100%;
   font-size: 16px;
+
  
 }
 
@@ -106,7 +107,7 @@
   align-items: center;
   justify-content: center;
   background-color: var(--text-dark);
-  height: 115vh;
+  height: 150vh;
 }
 
 /* Profile Content */
@@ -119,6 +120,7 @@
   border-radius: 8px;
   box-shadow: 0 2px 5px rgba(0.3, 0, 0, 0.3);
   width: 100%;
+ 
   max-width: 600px;
 }
 
