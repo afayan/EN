@@ -107,7 +107,8 @@
   align-items: center;
   justify-content: center;
   background-color: var(--text-dark);
-  height: 150vh;
+  height: 130vh;
+  /* margin-top: 20px; */
 }
 
 /* Profile Content */
