@@ -288,7 +288,8 @@ function Dashboard() {
       </section>
 
       <section className="my-courses-section">
-        <h2>My Courses</h2>
+        <h2>{isadmin ? 'Created Courses' : 'My Courses'}</h2>
+
         <div className="courses-container">
           {mycourses.map(course => (
             <div onClick={()=>navigate('/course/'+ course._id)} key={course._id} className="course-card">
@@ -325,7 +326,10 @@ function Dashboard() {
                 <h3>{course.cname}</h3>
                 <p className="instructor">Instructor: {course.faculty}</p>
                 <p className="rating-text">Rating: {course.rating}/5.0</p>
+                {!isadmin && (
                 <button className="enroll-btn" onClick={() => navigate('/description/' + course._id)}>Learn More</button>
+)}
+
 
               </div>
             </div>
