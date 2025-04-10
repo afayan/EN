@@ -1,0 +1,132 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f6f9;
+    color : black;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .quiz-generator {
+    display: flex;
+    color: black;
+    flex-direction: column;
+    min-height: 100px;
+    padding: 2rem 4rem;
+    background: linear-gradient(to right, #eef2f3, #f5f7fa);
+  }
+  
+  .quiz-generator h2 {
+    text-align: center;
+    font-size: 2rem;
+    color: #2c3e50;
+    margin-bottom: 2rem;
+  }
+  
+  .textarea-wrapper {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    max-width: 900px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  
+  textarea {
+    flex: 1;
+    color: black;
+    min-height: 200px;
+    padding: 1.2rem;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    font-size: 1.1rem;
+    resize: vertical;
+    margin-bottom: 1rem;
+    background-color: #fff;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+  }
+  
+  button {
+    align-self: flex-start;
+    padding: 0.75rem 2rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    font-size: 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  button:disabled {
+    background-color: #aaa;
+    cursor: not-allowed;
+  }
+  
+  .quiz-result {
+    margin-top: 3rem;
+    padding: 2rem;
+    background-color: #ffffff;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  }
+  
+  .quiz-result h3 {
+    font-size: 1.4rem;
+    color: #2c3e50;
+    margin-bottom: 1rem;
+  }
+  
+  .quiz-result pre {
+    white-space: pre-wrap;
+    font-size: 1.05rem;
+    color: #333;
+    line-height: 1.6;
+  }
+  .question-block {
+    margin-bottom: 2rem;
+  }
+  
+  .question {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+  
+  .option {
+    display: block;
+    margin: 0.4rem 0;
+    padding: 0.5rem;
+    background: #f0f0f0;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .option:hover {
+    background: #e0e0e0;
+  }
+  
+  .option input {
+    margin-right: 0.5rem;
+  }
+  
+  .option.correct {
+    background-color: #d4edda;
+    border: 1px solid #28a745;
+    color: #155724;
+  }
+  
+  .option.incorrect {
+    background-color: #f8d7da;
+    border: 1px solid #dc3545;
+    color: #721c24;
+  }
+  

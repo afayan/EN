@@ -19,6 +19,8 @@ import Contact from './pages/Contact'
 import Dummy from './pages/Dummy'
 import Courses from './pages/Courses'
 import Info from './pages/Info'
+import FloatingChatWidget from './components/chatbot/FloatingChatWidget'
+import QuizGenerator from './components/chatbot/QuizGenerator'
 // import CoursePage from './pages/Description'
 
 
@@ -27,6 +29,8 @@ function App() {
 
   return (
     <>
+     <FloatingChatWidget />
+
       <Routes>
       <Route path='*' element={<Landing2/>} />
       <Route path='/' element={<Landing2/>} />

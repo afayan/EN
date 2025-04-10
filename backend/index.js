@@ -12,11 +12,40 @@ import videomodel from "./dbs/videos.js";
 import actionmodel from "./dbs/completed.js";
 import bcrypt from "bcryptjs"; 
 import multer from "multer";
+import crypto from 'crypto'
 import { v2 as cloudinary} from "cloudinary"
 import {CloudinaryStorage} from 'multer-storage-cloudinary'
 
+// Convert your strings to 32-byte key and 16-byte IV using hash functions
+const key = crypto.createHash('sha256').update('my-secret-key').digest();   // 32 bytes
+const iv = crypto.createHash('md5').update('my-initialization-vector').digest(); // 16 bytes
+
+console.log(key, iv, typeof(key));
 
 
+// Encrypt Function
+function encryptEN(text) {
+  const cipher = crypto.createCipheriv('aes-256-cbc', key, iv);
+  let encrypted = cipher.update(text, 'utf8', 'hex');
+  encrypted += cipher.final('hex');
+  return encrypted;
+}
+
+// Decrypt Function
+function decryptEN(encryptedText) {
+  const decipher = crypto.createDecipheriv('aes-256-cbc', key, iv);
+  let decrypted = decipher.update(encryptedText, 'hex', 'utf8');
+  decrypted += decipher.final('utf8');
+  return decrypted;
+}
+
+// Example usage
+const secret = "Only premium students can see this!";
+const encrypted = encryptEN(secret);
+const decrypted = decryptEN(encrypted);
+
+console.log("Encrypted:", encrypted);
+console.log("Decrypted:", decrypted);
 
 const app = express();
 app.use(express.json());
@@ -400,8 +429,21 @@ app.post('/api/fun', (req, res)=>{
   res.json({message : "Fun"})
 })
 
-app.post("/api/upload", upload.single("video"), async (req, res) => {
+const videoUpload = (req, res, next) => {
+  upload.single("video")(req, res, (err) => {
+    if (err) {
+      console.error("Upload Error:", err); // Full error object
+      return res.status(400).json({ success: false, message: "Upload failed", error: err.message });
+    }
+    next(); // proceed to actual route if no error
+  });
+};
+
+
+app.post("/api/upload", videoUpload, async (req, res) => {
   try {
+    console.log('started');
+    
     const videoUrl = req.file.path; // Cloudinary video URL
     const {title, courseid, description} = req.body
     console.log("video uploaded");
@@ -423,6 +465,8 @@ app.post("/api/upload", upload.single("video"), async (req, res) => {
 
     return res.json({ success: true, url: videoUrl });
   } catch (err) {
+    console.log("Error",err);
+    
     return res.json({ success: false, message: err.message });
   }
 });
@@ -437,7 +481,15 @@ app.get("/api/getvideos/:cid",async (req, res)=>{
 
   const videos = await videomodel.find({courseid : cid})
 
-  return res.json({videos})
+  console.log(videos);
+  
+  const decryptedVideos = videos.map((v) => {
+    const videoObj = v.toObject(); // Convert Mongoose doc to plain JS object
+    videoObj.videoUrl = decryptEN(videoObj.videoUrl); // Decrypt URL
+    return videoObj;
+  });
+
+  return res.json({videos: decryptedVideos})
 
 
 })
