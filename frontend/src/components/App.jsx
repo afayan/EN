@@ -6,7 +6,7 @@ import HeroSection from "./components/HeroSection";
 
 //This is a USELESS FILE
 
-function App() {
+function App2() {
   return (
     <Router>
       <Navbar />
@@ -17,4 +17,4 @@ function App() {
   );
 }
 
-export default App;
+export default App2;

@@ -604,32 +604,59 @@ app.post('/api/getdashboardinfo', async (req, res) => {
 });
 
 
-app.get('/api/video/:vid',async (req, res)=>{
+// app.get('/api/video/:vid',async (req, res)=>{
 
-  try {
+//   try {
 
-    const vid = req.params.vid
-
-
-    const videodata = await videomodel.find({
-      _id : vid
-    })
+//     const vid = req.params.vid
 
 
-    if (videodata.length === 0) {
-      return res.json({status : false})
-    }
+//     const videodata = await videomodel.find({
+//       _id : vid
+//     })
+
+
+//     if (videodata.length === 0) {
+//       return res.json({status : false})
+//     }
   
-    return res.json({status : true ,data : videodata})  
+//     return res.json({status : true ,data : videodata})  
+
+//   } catch (error) {
+    
+//     return res.json({status : false, err : error})
+
+//   }
+
+
+// })
+
+app.get('/api/video/:vid', async (req, res) => {
+  try {
+    const vid = req.params.vid;
+
+    const videodata = await videomodel.findOne({ _id: vid });
+
+    if (!videodata) {
+      return res.json({ status: false });
+    }
+
+    const videoObj = videodata.toObject();
+
+    try {
+      // Try decrypting if it's encrypted
+      videoObj.videoUrl = decryptEN(videoObj.videoUrl);
+    } catch (decryptErr) {
+      console.warn("Decryption failed for video URL, sending as is.");
+    }
+
+    return res.json({ status: true, data: videoObj });
 
   } catch (error) {
-    
-    return res.json({status : false, err : error})
-
+    return res.json({ status: false, err: error.message });
   }
+});
 
-
-})
 
 
 app.get('/api/created/:cid', async (req, res) => {
