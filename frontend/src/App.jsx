@@ -18,6 +18,7 @@ import About from './pages/About'
 import Contact from './pages/Contact'
 import Dummy from './pages/Dummy'
 import Courses from './pages/Courses'
+import Info from './pages/Info'
 // import CoursePage from './pages/Description'
 
 
@@ -41,7 +42,8 @@ function App() {
       <Route path='/description/:cid' element={<Description/>}/>
       <Route path='/about' element={<About/>} />
       <Route path='/contact' element={<Contact/>} />
-      <Route path='/courses' element={<Courses/>} />      
+      <Route path='/courses' element={<Courses/>} />
+      <Route path='/info/:cid' element={<Info/>} />
       </Routes>
     </>
   )
