@@ -37,7 +37,7 @@ export default function Landing2() {
             <span className="text-highlight">in The World</span>
           </h1>
           <p className="hero-description">
-          Madarchod Randi ke bacche Oye bosdike madarchod bhen ke lode tere gand me lohe ka danda garam karke dalu randwe tujhetho gali ke kutte gand pe chut rakh ke katenge me bata raha hu tere lode pe madhu makkhi Katelode ke ando pe Road roller chale tu kab bathroom me muthne Jaye tho Tera loda ghir Jaye fir
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus culpa enim quibusdam quia odit sequi itaque doloribus fuga, recusandae perspiciatis, blanditiis consectetur? Libero repellendus impedit porro soluta, atque laborum sint est, dolor labore, vel commodi velit fugit omnis eaque
           </p>
           
           <div className="search-box">
