@@ -430,6 +430,8 @@ app.post('/api/fun', (req, res)=>{
 })
 
 const videoUpload = (req, res, next) => {
+  console.log('uploading...');
+  
   upload.single("video")(req, res, (err) => {
     if (err) {
       console.error("Upload Error:", err); // Full error object
@@ -444,7 +446,7 @@ app.post("/api/upload", videoUpload, async (req, res) => {
   try {
     console.log("started uploading...");
     
-    const videoUrl = req.file.path; // Cloudinary video URL
+    const videoUrl = encryptEN(req.file.path); // Cloudinary video URL
     const {title, courseid, description} = req.body
     console.log("video uploaded");
     
@@ -484,10 +486,18 @@ app.get("/api/getvideos/:cid",async (req, res)=>{
   console.log(videos);
   
   const decryptedVideos = videos.map((v) => {
-    const videoObj = v.toObject(); // Convert Mongoose doc to plain JS object
-    videoObj.videoUrl = decryptEN(videoObj.videoUrl); // Decrypt URL
+    const videoObj = v.toObject();
+  
+    try {
+      videoObj.videoUrl = decryptEN(videoObj.videoUrl); // Try decrypting
+    } catch (err) {
+      console.warn("Skipping decryption for this videoUrl:", videoObj.videoUrl);
+      // Leave the original URL if decryption fails
+    }
+  
     return videoObj;
   });
+  
 
   return res.json({videos: decryptedVideos})
 
