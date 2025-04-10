@@ -36,7 +36,6 @@ function Dashboard() {
       if (userid?.admin) {
         setisadmin(true)
         console.log("its an admin");
-        getCoursesByCreator(userid?._id)
       }
     }
 
@@ -69,7 +68,7 @@ function Dashboard() {
         const d2 = await r2.json()
         setmorecourses(d2.courses)
       } else {
-        setmorecourses(d1.courses)  // admin sees created courses here
+        getCoursesByCreator(userid?._id)
       }
     }
 
@@ -155,7 +154,7 @@ function Dashboard() {
   return (
     <div className="dashboard">
       <header className="dashboard-header">
-        <h1>Dashboard</h1>
+        <h1> {isadmin && 'Admin'} Dashboard</h1>
         <div className="header-right">
           {isadmin && (
             <div className="button-group">
@@ -184,7 +183,7 @@ function Dashboard() {
       }
 
       <section className="charts-section">
-        <span>
+        {!isadmin && <span>
           <h2>Popular Courses</h2>
           <div className="charts-container">
             {popularCourses.map(course => (
@@ -193,9 +192,9 @@ function Dashboard() {
               </div>
             ))}
           </div>
-        </span>
+        </span>}
 
-        <span>
+       {!isadmin && <span>
           <h2>Interested Courses</h2>
           <div className="charts-container">
             {interestedCourses.map(course => (
@@ -204,7 +203,7 @@ function Dashboard() {
               </div>
             ))}
           </div>
-        </span>
+        </span>}
 
         <span className='graphdiv'>
           <RadarChart outerRadius={90} width={430} height={250} data={gdata}>
@@ -259,9 +258,9 @@ function Dashboard() {
           <h3>{course.cname}</h3>
           <p className="instructor">Instructor: {course.faculty}</p>
           <p className="rating-text">Rating: {course.rating}/5.0</p>
-          {!isadmin && (
+          {!isadmin ? (
             <button className="enroll-btn" onClick={() => navigate('/description/' + course._id)}>Learn More</button>
-          )}
+          ) : <button className="enroll-btn" onClick={()=>navigate(`/info/${course._id}`)}>View Stats</button>}
         </div>
       </div>
     ))}
