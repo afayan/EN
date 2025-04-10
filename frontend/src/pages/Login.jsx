@@ -2,6 +2,8 @@ import React, { useRef, useState } from "react";
 import gsap from 'gsap'
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
+import './Login.css';
+import { FaUser, FaEnvelope, FaLock, FaSignInAlt, FaUserPlus, FaUserShield } from 'react-icons/fa';
 
 function Login() {
   const [error, setError] = useState(false);
@@ -180,26 +182,88 @@ function Login() {
       
     
      { !showlogin && <div className="loginform">
-        <h1>Sign Up</h1>
-        <input disabled={loading} type="text" ref={usernameref} placeholder="username" />
-        <input disabled={loading} type="text" ref={emailref} placeholder="email" />
-        <input disabled={loading} type="password" ref={passwordref} placeholder="password" />
-        <input disabled={loading} type="password" ref={repeatpasswordref} placeholder="repeat password"
-        />
-        <button id="logbutton" disabled={loading} onClick={handleSignup}>
-          Sign Up
+        <h1><FaUserPlus /> Sign Up</h1>
+        <div className="input-group">
+          <FaUser className="input-icon" />
+          <input 
+            disabled={loading} 
+            type="text" 
+            ref={usernameref} 
+            placeholder="Username" 
+          />
+        </div>
+        <div className="input-group">
+          <FaEnvelope className="input-icon" />
+          <input 
+            disabled={loading} 
+            type="email" 
+            ref={emailref} 
+            placeholder="Email address" 
+          />
+        </div>
+        <div className="input-group">
+          <FaLock className="input-icon" />
+          <input 
+            disabled={loading} 
+            type="password" 
+            ref={passwordref} 
+            placeholder="Password" 
+          />
+        </div>
+        <div className="input-group">
+          <FaLock className="input-icon" />
+          <input 
+            disabled={loading} 
+            type="password" 
+            ref={repeatpasswordref} 
+            placeholder="Confirm password"
+          />
+        </div>
+        <button 
+          id="logbutton" 
+          disabled={loading} 
+          onClick={handleSignup}
+          className="primary-button"
+        >
+          <FaUserPlus /> Sign Up
         </button>
-
       </div>}
 
      { showlogin && <div className="loginform">
-        <h1>Login</h1>
-        <input disabled={loading} ref={loginemail} type="text" placeholder="email" />
-        <input disabled={loading} ref={loginpassword} type="password" placeholder="password" />
-        <button id="logbutton" disabled={loading} onClick={handleLogin}>Login</button>
+        <h1><FaSignInAlt /> Login</h1>
+        <div className="input-group">
+          <FaEnvelope className="input-icon" />
+          <input 
+            disabled={loading} 
+            ref={loginemail} 
+            type="email" 
+            placeholder="Email address" 
+          />
+        </div>
+        <div className="input-group">
+          <FaLock className="input-icon" />
+          <input 
+            disabled={loading} 
+            ref={loginpassword} 
+            type="password" 
+            placeholder="Password" 
+          />
+        </div>
+        <button 
+          id="logbutton" 
+          disabled={loading} 
+          onClick={handleLogin}
+          className="primary-button"
+        >
+          <FaSignInAlt /> Login
+        </button>
 
-        <button id="amdinlink" onClick={()=>navigate('/admin')}>Login as admin</button>
-
+        <button 
+          id="amdinlink" 
+          onClick={()=>navigate('/admin')}
+        >
+          <FaUserShield /> Login as Admin
+        </button>
       </div>}
       
 

@@ -59,12 +59,13 @@ button{
 }
 
 .select{
-  width: max-content;
+  width: 100%;
   cursor: pointer;
   background-color: var(--nav-bg);
   border-radius: 10px;
   box-shadow: 0 9px 9px var(--box-shadow-light);
-  margin-left: 25%;
+  display: flex;
+  justify-content: center;
 }
 
 .select button{
@@ -90,8 +91,9 @@ button{
 
 .largeparent{
   display: flex;
-  margin: 30px;
-  height: 90vh;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
 }
 
 .imgholder{
@@ -102,21 +104,19 @@ button{
 }
 
 .loginformlarge{
-  flex: 1;
-  position: absolute;
-  transform: translateX(-50%);
+  flex: 0 1 auto;
   padding: 50px;
-  width: 50vw;
+  max-width: 500px;
+  width: 100%;
   box-shadow: 0 4px 6px rgb(190, 190, 190);
-  background-color: var(--box-shadow-light);
-  left: 50%;
-  height: 90vh;
+  background-color: var(--card-bg);
+  border-radius: var(--radius-lg);
 }
 
 .largeparent input, .largeparent button{
   padding: 10px;
   box-shadow: 0 4px 6px var(--box-shadow-light);
-  width: 80%;
+  width: 100%;
   font-size: 0.9em;
 }
 

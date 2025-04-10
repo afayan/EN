@@ -173,54 +173,83 @@ function VideoPage() {
   return (
     <div className="videopage">
     
-
     <div className="leftside">
-    <h1 className="head1">{title}</h1>
+      <h1 className="head1">{title}</h1>
 
-    <div className="videocontainer">
-      <video src={vurl} controls></video>
-    </div>
+      <div className="videocontainer">
+        <video src={vurl} controls></video>
+      </div>
 
-    <div className="buttonsdiv">
-        <button onClick={()=>handleAction('l')}>Like</button>
-        <button onClick={()=>handleAction('c')}>Complete</button>
-        <button onClick={()=>handleAction('d')}>Dislike</button>
-    </div>
+      <div className="buttonsdiv">
+        <button className="like-btn" onClick={()=>handleAction('l')}>
+          <i className="fas fa-thumbs-up"></i> Like
+        </button>
+        <button className="complete-btn" onClick={()=>handleAction('c')}>
+          <i className="fas fa-check-circle"></i> Complete
+        </button>
+        <button className="dislike-btn" onClick={()=>handleAction('d')}>
+          <i className="fas fa-thumbs-down"></i> Dislike
+        </button>
+      </div>
 
-    <p className="desc">
-        {desc}
-    </p>
+      <div className="desc card">
+        <h3>Description</h3>
+        <p>{desc}</p>
+      </div>
 
-    <div className="commentsdiv">
-
-        <button onClick={()=>addComment()}>Post</button>
-        <input type="text" name="" id="" ref={commentref}/>
+      <div className="commentsdiv card">
+        <h3>Comments</h3>
+        <div className="comment-input">
+          <input 
+            type="text" 
+            placeholder="Add a comment..." 
+            ref={commentref}
+          />
+          <button onClick={()=>addComment()}>
+            <i className="fas fa-paper-plane"></i> Post
+          </button>
+        </div>
 
         <div className="commentroll">
         {
-            comments.map((c)=>{
-                let d = new Date(c.date)
-                return <div key={c._id} className="comment"><p>{c.user}</p> {c.comment}
-                <p>{d.toDateString()}</p>
+          comments.map((c)=>{
+            let d = new Date(c.date)
+            return (
+              <div key={c._id} className="comment">
+                <div className="comment-header">
+                  <p className="comment-user">{c.user}</p>
+                  <p className="comment-date">{d.toDateString()}</p>
                 </div>
-            })
+                <div className="comment-body">{c.comment}</div>
+              </div>
+            )
+          })
         }
-
         </div>
-
+      </div>
     </div>
 
-    </div>
-
-    <div className="playlistdiv">
-
-        <h1>Others in the playlist</h1>
-
+    <div className="playlistdiv card">
+      <h2>Course Playlist</h2>
+      <div className="playlist-container">
         {videos.map((v)=>{
-
-            return <div onClick={()=>navigate('/video/' + course+"/" +v._id)} className={"playlistelement "+(v._id == video ? "selected" : '')} key={v.title}><p>{v.title}</p><p>{v.completed?<SiTicktick />
-                : ''}</p></div>
+          return (
+            <div 
+              onClick={()=>navigate('/video/' + course+"/" +v._id)} 
+              className={"playlistelement "+(v._id == video ? "selected" : '')} 
+              key={v.title}
+            >
+              <div className="playlist-item-content">
+                <p className="video-title">{v.title}</p>
+                {v.completed ? 
+                  <span className="completed-indicator"><SiTicktick /></span> : 
+                  <span className="not-completed"></span>
+                }
+              </div>
+            </div>
+          )
         })}
+      </div>
     </div>
     </div>
   );

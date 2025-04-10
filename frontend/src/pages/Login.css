@@ -1,0 +1,221 @@
+.largeparent {
+    width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--bg-color) 0%, #e6e9f0 100%);
+    padding: 2rem;
+    box-sizing: border-box;
+    margin: 0;
+    position: relative;
+}
+  
+  .loginformlarge {
+    background-color: var(--card-bg);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-xl);
+    width: 100%;
+    max-width: 480px;
+    overflow: hidden;
+    position: relative;
+    padding: 2rem;
+    animation: fadeIn 0.5s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .select {
+    display: flex;
+    margin-bottom: 2rem;
+    position: relative;
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .select button {
+    flex: 1;
+    background: transparent;
+    border: none;
+    padding: 1rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-medium);
+    cursor: pointer;
+    transition: color 0.3s ease;
+    z-index: 1;
+  }
+  
+  .select button:hover {
+    color: var(--primary-color);
+  }
+  
+  .scrollparent {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: var(--border-color);
+  }
+  
+  .scrollparent div {
+    width: 50%;
+    height: 100%;
+    background-color: var(--primary-color);
+    transition: transform 0.3s ease;
+  }
+  
+  .loginparent {
+    transition: all 0.3s ease;
+    width: 100%;
+  }
+  
+  .loginform {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
+    animation: slideUp 0.4s ease-out;
+  }
+  
+  .loginform h1 {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+  
+  .input-group {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .input-icon {
+    position: absolute;
+    left: 1rem;
+    color: var(--text-light);
+    font-size: 1rem;
+  }
+  
+  .loginform input {
+    padding: 1rem 1.2rem 1rem 2.8rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    width: 100%;
+  }
+  
+  .loginform input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+    outline: none;
+  }
+  
+  .loginform button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 1rem;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+  }
+  
+  .loginform .primary-button {
+    background-color: var(--primary-color);
+    color: white;
+    font-size: 1.1rem;
+  }
+  
+  .loginform button:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+  
+  .loginform button:disabled {
+    background-color: var(--text-light);
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+  
+  #amdinlink {
+    background-color: transparent;
+    color: var(--text-medium);
+    border: 1px solid var(--border-color);
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius-md);
+    text-align: center;
+    width: 100%;
+  }
+  
+  #amdinlink:hover {
+    background-color: var(--bg-color);
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+  }
+  
+  .loginmessage {
+    padding: 1rem;
+    border-radius: var(--radius-md);
+    margin-top: 1.5rem;
+    font-weight: 500;
+    text-align: center;
+    animation: fadeIn 0.3s ease-in-out;
+    width: 100%;
+  }
+  
+  #error {
+    background-color: rgba(239, 68, 68, 0.1);
+    color: var(--error-color);
+    border: 1px solid var(--error-color);
+  }
+  
+  #success {
+    background-color: rgba(16, 185, 129, 0.1);
+    color: var(--success-color);
+    border: 1px solid var(--success-color);
+  }
+  
+  /* Animations */
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes slideUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+  
+  /* Responsive styles */
+  @media (max-width: 576px) {
+    .loginformlarge {
+      padding: 1.5rem;
+    }
+    
+    .loginform h1 {
+      font-size: 1.75rem;
+    }
+    
+    .select button {
+      padding: 0.75rem;
+    }
+  }
+  

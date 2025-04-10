@@ -60,6 +60,13 @@ function Dashboard() {
     }
 
     async function getcourses(){
+      // Get user information from session storage
+      const authUser = JSON.parse(sessionStorage.getItem('auth'));
+      const isUserAdmin = authUser?.admin || false;
+      
+      // Set admin state based on user info
+      setisadmin(isUserAdmin);
+      
       const r1 = await fetch('/api/showmycourses', {
         method: 'post',
         headers : {
@@ -67,8 +74,8 @@ function Dashboard() {
         },
 
         body: JSON.stringify({
-          userid : JSON.parse(sessionStorage.getItem('auth'))._id,
-          admin : isadmin
+          userid : authUser._id,
+          admin : isUserAdmin
         })
       })
 
@@ -77,12 +84,16 @@ function Dashboard() {
       console.log(d1);
       setMycourses(d1.courses)
 
-      const r2 = await fetch('/api/allcourses')
-      const d2 = await r2.json()
-
-      console.log(d2);
-      setmorecourses(d2.courses)
-      
+      // For admins, we don't need to show "More Courses" section as they can see all courses
+      // in their "My Courses" section
+      if (!isUserAdmin) {
+        const r2 = await fetch('/api/allcourses')
+        const d2 = await r2.json()
+        console.log(d2);
+        setmorecourses(d2.courses)
+      } else {
+        setmorecourses([]) // Empty array for admins
+      }
     }
 
     async function fetchSpiderGraphData() {

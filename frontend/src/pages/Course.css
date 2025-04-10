@@ -1,0 +1,147 @@
+/* Course Page Styles */
+.course-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.course-header {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.course-header h1 {
+  color: var(--primary-color);
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.course-header p {
+  color: var(--text-medium);
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.video-card {
+  background-color: var(--card-bg);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  border: 1px solid var(--border-color);
+}
+
+.video-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+.video-thumbnail {
+  position: relative;
+  height: 180px;
+  background-color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.video-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.play-icon {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.5rem;
+  opacity: 0.8;
+  transition: all 0.3s ease;
+}
+
+.video-card:hover .play-icon {
+  background-color: var(--primary-color);
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.video-info {
+  padding: 1.25rem;
+}
+
+.video-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+}
+
+.video-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: var(--text-medium);
+}
+
+.video-duration {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.video-status {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.completed {
+  color: var(--success-color);
+}
+
+.not-started {
+  color: var(--text-light);
+}
+
+.in-progress {
+  color: var(--warning-color);
+}
+
+@media (max-width: 768px) {
+  .video-grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+  
+  .course-header h1 {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .video-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .course-container {
+    padding: 1rem;
+  }
+}
