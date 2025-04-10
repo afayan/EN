@@ -16,6 +16,9 @@ function AddCourse() {
         navigate('/');
     }
 
+    console.log("USERID:", userid);
+    
+
     // Handle file selection
     const handleFileChange = (event) => {
         setThumbnail(event.target.files[0]); // Store the selected file
@@ -27,6 +30,7 @@ function AddCourse() {
         formData.append('category', subjectref.current.value);
         formData.append('faculty', facref.current.value);
         formData.append('description', descref.current.value);
+        formData.append('creator', userid?._id)
         if (thumbnail) {
             formData.append('thumbnail', thumbnail); // Append image file
         }

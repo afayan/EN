@@ -134,7 +134,7 @@ app.post("/api/login", async (req, res) => {
 
 //  Add a new course
 app.post('/api/addcourse', upload2.single('thumbnail'), async (req, res) => {
-  const { cname, category, faculty, description } = req.body;
+  const { cname, category, faculty, description, creator } = req.body;
 
   if (!cname || !category || !faculty || !description || !req.file) {
     return res.json({ status: false, message: "All fields and image are required" });
@@ -150,6 +150,7 @@ app.post('/api/addcourse', upload2.single('thumbnail'), async (req, res) => {
       category,
       faculty,
       description,
+      creator,
       image: imageUrl, // Save Cloudinary image URL
     });
 
@@ -753,6 +754,86 @@ app.get('/api/course-details/:id', async (req, res) => {
     return res.status(500).json({ error: 'Server error while fetching course details' });
   }
 });
+
+
+app.get('/api/analytics/:courseid', async (req, res) => {
+  try {
+    const { courseid } = req.params;
+
+    // Step 1: Get all video IDs under this course
+    const videos = await videomodel.find({ courseid });
+    const videoIds = videos.map(v => v._id.toString());
+
+    if (videoIds.length === 0) {
+      return res.json({ message: 'No videos found for this course.' });
+    }
+
+    // Step 2: Get all actions for these videos
+    const actions = await actionmodel.find({ video: { $in: videoIds } });
+
+    // Step 3: Global course stats
+    const stats = {
+      comments: 0,
+      likes: 0,
+      dislikes: 0,
+      completions: 0
+    };
+
+    // Step 4: Per video stats
+    const perVideoStats = {};
+
+    videos.forEach(video => {
+      perVideoStats[video._id] = {
+        title: video.title,
+        likes: 0,
+        dislikes: 0,
+        completions: 0
+      };
+    });
+
+    // Step 5: Tally actions
+    actions.forEach(action => {
+      switch (action.action) {
+        case 'c':
+          stats.completions += 1;
+          if (perVideoStats[action.video]) {
+            perVideoStats[action.video].completions += 1;
+          }
+          break;
+        case 'l':
+          stats.likes += 1;
+          if (perVideoStats[action.video]) {
+            perVideoStats[action.video].likes += 1;
+          }
+          break;
+        case 'd':
+          stats.dislikes += 1;
+          if (perVideoStats[action.video]) {
+            perVideoStats[action.video].dislikes += 1;
+          }
+          break;
+        default:
+          break;
+      }
+    });
+
+    // Convert perVideoStats to an array
+    const perVideo = Object.entries(perVideoStats).map(([id, data]) => ({
+      videoId: id,
+      ...data
+    }));
+
+    res.json({
+      ...stats,
+      perVideo
+    });
+
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Server Error" });
+  }
+});
+
 
 
 async function getUserCourseCompletionStatus(userId) {
