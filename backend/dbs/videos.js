@@ -5,7 +5,7 @@ const videoschema = new mongoose.Schema({
         type : String
     },
     videoUrl : {
-        type : String
+        type : String 
     },
     courseid : {
         type : String

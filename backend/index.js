@@ -442,7 +442,7 @@ const videoUpload = (req, res, next) => {
 
 app.post("/api/upload", videoUpload, async (req, res) => {
   try {
-    console.log('started');
+    console.log("started uploading...");
     
     const videoUrl = req.file.path; // Cloudinary video URL
     const {title, courseid, description} = req.body
