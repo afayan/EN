@@ -36,6 +36,7 @@ function Dashboard() {
       if (userid?.admin) {
         setisadmin(true)
         console.log("its an admin");
+        getCoursesByCreator(userid?._id)
       }
     }
 
@@ -125,6 +126,23 @@ function Dashboard() {
     const d1 = await r1.json()
     console.log(d1);
   }
+
+  async function getCoursesByCreator(cid) {
+    try {
+      const res = await fetch(`/api/created/${cid}`);
+      
+      if (!res.ok) {
+        throw new Error(`Server error: ${res.status}`);
+      }
+  
+      const data = await res.json();
+      console.log('Courses by Creator:', data);
+      setmorecourses(data)
+    } catch (error) {
+      console.error('Failed to fetch courses:', error.message);
+    }
+  }
+  
 
   async function search(e) {
     const q = e.target.value

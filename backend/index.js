@@ -570,6 +570,24 @@ app.get('/api/video/:vid',async (req, res)=>{
 })
 
 
+app.get('/api/created/:cid', async (req, res) => {
+  const { cid } = req.params;
+
+  try {
+    const courses = await coursemodel.find({ creator: cid });
+
+    if (courses.length === 0) {
+      return res.status(404).json({ message: 'No courses found for this creator.' });
+    }
+
+    res.json(courses);
+  } catch (error) {
+    console.error('Error fetching courses:', error);
+    res.status(500).json({ message: 'Server Error' });
+  }
+});
+
+
 app.post('/api/adminlogin', async (req, res) => {
   try {
     const { email, password } = req.body;
