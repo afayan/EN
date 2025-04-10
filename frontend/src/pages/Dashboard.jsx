@@ -247,26 +247,27 @@ function Dashboard() {
 
       {/* More Courses / Created Courses Section */}
       <section className="more-courses-section">
-        <h2>{isadmin ? "Created Courses" : "More Courses"}</h2>
-        <div className="courses-container">
-          {morecourses.map(course => (
-            <div key={course._id} className="course-card">
-              <div className="course-image">
-                <img src={course?.image} alt={course.cname} />
-                <div className="rating">★ {course.rating}</div>
-              </div>
-              <div className="course-info">
-                <h3>{course.cname}</h3>
-                <p className="instructor">Instructor: {course.faculty}</p>
-                <p className="rating-text">Rating: {course.rating}/5.0</p>
-                {!isadmin && (
-                  <button className="enroll-btn" onClick={() => navigate('/description/' + course._id)}>Learn More</button>
-                )}
-              </div>
-            </div>
-          ))}
+  <h2>{isadmin ? "Created Courses" : "More Courses"}</h2>
+  <div className="courses-container">
+    {Array.isArray(morecourses) && morecourses.map(course => (
+      <div key={course._id} className="course-card">
+        <div className="course-image">
+          <img src={course?.image} alt={course.cname} />
+          <div className="rating">★ {course.rating}</div>
         </div>
-      </section>
+        <div className="course-info">
+          <h3>{course.cname}</h3>
+          <p className="instructor">Instructor: {course.faculty}</p>
+          <p className="rating-text">Rating: {course.rating}/5.0</p>
+          {!isadmin && (
+            <button className="enroll-btn" onClick={() => navigate('/description/' + course._id)}>Learn More</button>
+          )}
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
+
 
       <footer className="dashboard-footer">
         <p>© 2025 Learning Platform. All rights reserved.</p>
