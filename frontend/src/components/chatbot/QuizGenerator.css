@@ -1,13 +1,4 @@
-body {
-    margin: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f4f6f9;
-    color : black;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .quiz-generator {
+.quiz-generator {
     display: flex;
     color: black;
     flex-direction: column;

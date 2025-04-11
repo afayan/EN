@@ -20,8 +20,6 @@ import {CloudinaryStorage} from 'multer-storage-cloudinary'
 const key = crypto.createHash('sha256').update('my-secret-key').digest();   // 32 bytes
 const iv = crypto.createHash('md5').update('my-initialization-vector').digest(); // 16 bytes
 
-console.log(key, iv, typeof(key));
-
 
 // Encrypt Function
 function encryptEN(text) {
@@ -39,13 +37,6 @@ function decryptEN(encryptedText) {
   return decrypted;
 }
 
-// Example usage
-const secret = "Only premium students can see this!";
-const encrypted = encryptEN(secret);
-const decrypted = decryptEN(encrypted);
-
-console.log("Encrypted:", encrypted);
-console.log("Decrypted:", decrypted);
 
 const app = express();
 app.use(express.json());
@@ -523,7 +514,7 @@ app.post("/api/getvideos/:cid", async (req, res) => {
     const videoData = videos.map((video) => {
       const userAction = actions.find((action) => action.video === video._id.toString());
 
-      console.log("actinos is ",userAction);
+      // console.log("actinos is ",userAction);
       
 
       return {
@@ -617,12 +608,37 @@ app.get('/api/video/:vid',async (req, res)=>{
 
 
     if (videodata.length === 0) {
+      console.log('nothing');
+      
       return res.json({status : false})
     }
-  
-    return res.json({status : true ,data : videodata})  
+    
+
+    const videoObj = videodata[0].toObject();
+    console.log(videoObj.videoUrl);
+    
+
+    try {
+      // Try decrypting if it's encrypted
+      let nnnn = decryptEN(videoObj.videoUrl);
+      console.log("decrypted:",nnnn);
+      
+      videoObj.videoUrl = nnnn
+      console.log(videoObj);
+      
+    } catch (decryptErr) {
+      console.warn("Decryption failed for video URL, sending as is.");
+      return res.json({status : true ,data :videodata}) 
+    }
+
+    console.log(videodata);
+    
+
+    return res.json({status : true ,data : [videoObj]})  
 
   } catch (error) {
+    console.log("error");
+    
     
     return res.json({status : false, err : error})
 
